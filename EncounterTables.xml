@@ -1,0 +1,13 @@
+
+<encountertables>
+ <encountertable Name="Utility 1" Load="Merge">
+    <objects>
+      <object Chance="10" Number="1d1" Blueprint="cats_chemlamp"></object>
+    </objects>
+  </encountertable>
+   <encountertable Name="Utility 2" Load="Merge">
+    <objects>
+      <object Chance="10" Number="1d1" Blueprint="cats_flashlight"></object>
+    </objects>
+  </encountertable>
+  </encountertables>

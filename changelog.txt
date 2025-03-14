@@ -1,0 +1,94 @@
+---1.1.1: Expansion 1 Bugfix---
+Fixed exception in ObjectBlueprints that refereced a nonexistent blueprint.
+
+---1.1.2: Expansion 1 Bugfix 2---
+Added the Anticarbon Emitter to the bottom of the blueprint file, allowing the rest of the mod to work for users who haven't enabled scripting. 
+
+---1.1.3: Expansion 1 Bugfix 3---
+Changed the name of the mod to stop causing file path issues. Thanks to LiquidRogue for spotting that.
+Removed power switch from the chemlamp, as it wasn't working properly. Will re-implement it in the future.
+
+---1.1.4 Expansion 1 Bugfix 4---
+Set SpawnAsDropColor="false" on all DropOnDamage calls. This was unintentionally recoloring several mobs, which should now be fixed. Thanks to molly-cactus for finding this fix. 
+Re-Implemented the power switch on the chemlamp, so make sure to power yours off or unequip before traveling on the worldmap.
+The hyrkhound jawbone's acid consumption is no longer tech scannable.
+
+---1.2: Expansion 2---
+
+Bugfixes:
+Fixed a bug where cannibals were getting an invalid blueprint instead of the rage toga. 
+The thinking cap now properly adds telepathy. 
+
+Adjustments:
+The Sap Proboscis now transfers health from organic targets to the wielder.
+Renamed the psionic amplifier to the psionic focus to provide distinction from other mods and future vanilla implementation of psiamps.
+The rage toga now has the rare property.
+
+Additions:
+Re-Added the witchwood club, a tier 1 cudgel that occasionally confuses enemies on hit.
+Added the box of Holy Treats, dropped rarely by slaying cats with zeal. Can be used to summon a legendary dog compantion.
+Added the box of Holy Catnip, dropped rarely by slaying dogs with zeal. Can be used to summon a legendary cat companion. 
+Added the magma aegis, a shield dropped from great magma crabs. 
+Added the convalessent gland, a powerful and versatile healing item that can be looted from blue jels.
+Added the power saw, a gaslight axe with high penetration and low damage that can be used to cut through walls. Rare drop from sawhanders.
+Added the Coolarator, an emergency coolant device that consumes convalessence to reduce heat when the wearer's temperature reaches dangerous levels. Rarely carried by rimewyks. 
+
+---1.2.1: Expansion 2 Bugfix 1 ---
+Added a rules text description for the arc band. 
+Cleaned up the dismemberment projectile script a little bit.
+Expanded the chargelamp's light radius from 8 to 9. Now slightly more than a glowsphere, at the cost of energy cell power.
+Chemlamps can now be disassembled for a 1 bit, giving them a use for once you own a glowsphere. They still can't be crafted. 
+
+---1.3: Expansion 2 Bugfix 2 ---
+Attempt to unbreak the mod due to updates that broke it. Not sure how well this will work, but will likely be my last update. I'm not doing this for every feature friday.
+Removed the decarbonizer because fixing it would be more work, and the base game code changes often enough that any fix would be temporary anywho. 
+Eggs and glands now have the "norust" property.
+Reduced the powerdrain on the psionic beacon by a factor of 10.
+The thinking cap and psiamp now properly require a boot sequence to give telepathy.
+The chemlamp and chargelamp should no longer lose charge when traveling on the worldmap.
+Chromatic Illustrator's description now accurately describes it working on surfaces, not objects.
+Reduced the weight of the slimegland to 1.
+Known Issue: The psi beacon seems to cause issues with psi hunter spawning, probably because of the exceptionally high glimmer.
+
+---1.3.1 Expansion 2 Bugfix 3 ---
+Jilted lovers now properly have a 1% chance of having a vinovine.
+Cave spider eggs now spawn a new creature, the Cave Spider Hatchling. Hatchlings are more aggressive, but easier to kill and don't litter the map with webs and eggs.
+Added "<tag Name="NoAutoget" Value="1" />" to several gland and egg type items to stop inventory clog.
+Reduced troll rib spawn rate from 10 to 4.
+Increased knuckleduster inventory rate for snapjaw brutes from 5 to 7%, and increased amount from 1 to 1d2.
+Increased knuckleduster damage from 1 to 1d2.
+Sunpacks must now be worn or carried in hand to produce power.
+Breeder cells should no longer set you on fire on the world map.
+
+---1.3.2 Expansion 2 Bugfix 4 ---
+Removed use of "TemporaryTurnInto" on cave spider eggs. They will no longer have a chance to spontaneously hatch into spiders, but this should help with performance issues caused by temporary items.
+Previously, the eggs left behind by spiders would have a 10% chance to be temporary, calling functions for potentially 1000 turns, forcing the zone to stay loaded in the background while this happened. This would then populate the zone with more spiders, worsening the issue.
+I haven't done too deep a look at this fix, so if it fails to reduce the unintended loaded zones please let me know.
+With the wide availability of glowspheres and other light sources in the early game, I've buffed the light items from this mod to make them less uselss.
+Chemlamp light radius increased from 5 to 7.
+Glowpad Wreath light radius increased from 3 to 4.
+Glowpad Wreath now grants +100 reputation with the FLowers faction. 
+Chargelamp light radius increased from 9 to 10.
+The Sanguine Catalyzer now has a boot up time of 1000 turns before it begins producing 1 water per 1000 turns. This is to make only wearing it for world map travel less effective.
+The Symbiotic Vinovine's description now hints at its BleedingOnHit bonus for unarmed attacks.
+
+---1.3.3 Expansion 2 Bugfix 5 ---
+Replaced all instances of "SecondaryStat" with "Stat" to keep compatability with current release. If you're running a version released prior to November 2022, you'll want to use an older version of the mod.
+Thanks to Alvidlife for providing the fix.
+
+1.3.6
+Finally fixed the very minor formatting error on the anticarbon emitter and re enabled the item. 5% of decarbonizers will now carry one, which should only be attainable by killing them.
+
+1.4.0:
+Added "tick grenades", which deploy into robots that chase enemies and explode. Ticks borrow the code from feral lah pods, using the mechanical beetle's body.
+I threw these together these awhile ago, not sure if it was after playing titanfall or reading a reddit thread about mod item ideas, but forgot to upload it. All ticks are HE, with gas ticks possibly to come if I can recycle the urchin code.
+Tick grenades can be found wherever grenades dynamically generate, but not in turrets. Activated ticks shouldn't spawn on their own, so let me know if that happens because it's terrifying.
+Added the "magma cannon", a powerful missile weapon that is loaded with lava, launching it as a projectile that deals a large amount of fire damage along with a large temperature increase. Projectiles create hazardous pools of lava in the tile they impact.
+I made this years ago as part of an ambitious energy weapons pack that I never finished.
+Appears wherever high tier missile weapons generate, including as turrets. Watch out for that.
+Psionic Amp should be fixed, and now has a life steal property in place of its elemental damage. The cause of the issue was an outdated call to the "Examiner" for artifacts, removing all descriptive text of the item.
+Breeder Cell should no longer generate heat when not being carried, and will no longer heat the tiles around itself. It should now only increase the temperature of whoever is carrying it. Carrying too many breeder cells for too long can still turn you into lava.
+
+1.4.1:
+Tidied up the reclmation pellet a little bit, adjusting its tier down to 1 and giving it the pill sprite.
+Fixed the magma cannon's sprite, and adjusted its elemental damage to be fire. (It was previously vorpal?) Also replaced its 2 bit part with a 3 bit.

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<populations>
+<population Name="IchorMerchantInventory" Load="Merge">
+    <group Name="Items" Load="Merge">  <!-- Add the Load="Merge" attribute to each nested group, mimicking the base game's PopulationTables.xml structure -->
+	  <object Blueprint="cats_waterbottle" Chance="100" Amount="1d2"/> 
+    </group>
+  </population>
+  <population Name="Ingredients_EarlyTiers" Load="Merge">
+    <group Name="Items" Load="Merge"> 
+	  <object Blueprint="cats_waterbottle" Number="1" Weight="10"/> 
+    </group>
+  </population>
+</populations>

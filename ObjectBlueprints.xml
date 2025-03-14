@@ -1,0 +1,1300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+<!-- Coolerator -->
+<object Name="cats_coolerator" Inherits="BaseBracelet">
+    <part Name="Armor" AV="0" DV="1" WornOn="Arm" />
+    <part Name="Render" DisplayName="{{C|coolerator}}" RenderString="]" TileColor="&amp;C" DetailColor="Y" />
+    <part Name="Commerce" Value="50" />
+    <part Name="Physics" Weight="2" />
+    <part Name="Description" Short="Fluid pumps lie in wait, waiting for the thermometers to sound the alarms on this emergency coolant device." />
+	<part Name="LiquidFueledPowerPlant" Liquid="convalessence" ChargePerDram="2" ConsiderLive="false" NameForStatus="CoolantPump" />
+	<part Name="LiquidVolume" MaxVolume="12" Volume="0" StartVolume="0-16" InitialLiquid="convalessence-1000" />
+	<part Name="TinkerItem" Bits="0014" CanDisassemble="true" CanBuild="true" />
+    <part Name="Metal" />
+	<part Name="LeakWhenBroken" />
+	<part Name="PowerSwitch" EnergyCost="100" FlippableWithoutUnderstanding="true" ActivateSuccessMessage="" ActivateFailureMessage="" DeactivateSuccessMessage="" DeactivateFailureMessage="" />
+	<part Name="Examiner" Alternate="bracelet" Complexity="3" />
+	<part Name="TemperatureAdjuster" ChargeUse="1" IsEMPSensitive="true" TemperatureAmount="-100" TemperatureThreshold="212" ThresholdAbove="false" AlwaysUseCharge="false" WorksOnEquipper="false" WorksOnSelf="false" WorksOnWearer="true" WorksOnCarrier="false" WorksOnCellContents="true" WorksOnAdjacentCellContents="false" IsPowerSwitchSensitive="true" NameForStatus="CoolantRelease" BehaviorDescription="Rapidly cools the wearer when their temperature exceeds 212 degrees." />
+	<part Name="LightSource" OnlyIfCharged="true" Radius="2" />
+    <tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+	<tag Name="Tier" Value="5" />
+  </object>
+  <object Name="Rimewyk" Load="Merge">
+	<inventoryobject Blueprint="cats_coolerator" Number="1" Chance="2"/>
+	<tag Name="NoEquip" Value="cats_coolerator" />
+	<property Name="WontSell" Value="cats_coolerator" />
+  </object>
+<!-- Power Saw -->
+<object Name="cats_powersaw" Inherits="MeleeWeapon">
+    <part Name="Render" DisplayName="{{W|power}} saw" Tile="Items/sw_axe_9.bmp" ColorString="&amp;Y" DetailColor="W" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="3" BaseDamage="1d2" Skill="Axe" />
+    <part Name="Examiner" Alternate="tool" Complexity="4" Difficulty="0" />
+    <part Name="Commerce" Value="180" />
+    <part Name="EnergyCellSocket" SlotType="EnergyCell" />
+    <part Name="Description" Short="A yellow-handled power tool used for cutting through tough metals. Its small, circular blade spins when the trigger is squeezed." />
+    <part Name="TinkerItem" Bits="0047" CanDisassemble="true" CanBuild="true" />
+    <part Name="Metal" />
+    <part Name="Gaslight" ChargeUse="150" ChargedSkill="Axe" UnchargedSkill="Axe" ChargedPenetrationBonus="5" UnchargedPenetrationBonus="0" ChargedDamage="1d4" UnchargedDamage="1d2" ChargedName="{{W|power}} saw" UnchargedName="power saw" />
+    <part Name="Drill" ChargeUse="125" HitsRequired="8" />
+	<part Name="BootSequence" BootTime="2" ChargeUse="1" VerbOnBootInitialized="beep" VerbOnBootAborted="buzz" VerbOnBootDone="whir" IsEMPSensitive="true" IsTechScannable="true" NameForStatus="BladeSpinUp"/>
+	<tag Name="Mods" Value="WeaponMods,CommonMods,ElectronicsMods" />
+    <tag Name="Tier" Value="7" />
+  </object>
+<!-- Luminous Gland -->
+  <object Name="cats_convagland" Inherits="Grenade">
+    <part Name="Render" DisplayName="{{C|convalessent gland}}" RenderString="004" RenderLayer="5" Tile="Assets_Content_Textures_Items_sw_orb.bmp" ColorString="&amp;C" DetailColor="Y" />
+    <part Name="Physics" Weight="5" />
+    <part Name="Commerce" Value="5" />
+    <part Name="Description" Short="A gross body part filled with chilly, glowing fluid." />
+	<part Name="DeploymentGrenade" Blueprint="ConvalessencePool" Count="1d4+4" Radius="1" RealRadius="false" LoyalToThrower="false" ActivationVerb="pop" BlockedBySolid="true" BlockedByNonEmpty="true" DustPuff="true" DustPuffEach="false" />
+	<part Name="Examiner" Complexity="0" Difficulty="0" />
+	<part Name="PreparedCookingIngredient" type="regenHightier" charges="1" />
+	<part Name="TinkerItem" Bits="0" CanDisassemble="false" CanBuild="false" />
+	<part Name="DeployableInfrastructure" DeployNoun="gland" DeployVerb="squeeze" ObjectBlueprint="ConvalessencePool" Cells="4" />
+	<part Name="Food" Satiation="Snack" Thirst="500" Healing="1d64+32" Message="That didn't seem very edible..." IllOnEat="true"/>
+	<part Name="LightSource" OnlyIfCharged="false" Radius="2" />
+    <tag Name="Tier" Value="0" />
+	<tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+	<tag Name="Mods" Value="None" />
+  </object>
+  <object Name="Blue Jel" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_convagland" MinimumDamage="1" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+<!-- Magma Shield -->
+<object Name="cats_magmacrabshield" Inherits="BaseShield">
+    <part Name="Render" DisplayName="{{R|magma}} aegis" ColorString="&amp;O" DetailColor="R" />
+	<part Name="Armor" Heat="30" WornOn="Hand"/>
+	<part Name="TemperatureAdjuster" ChargeUse="0" IsEMPSensitive="false" IsBootSensitive="false" TemperatureAmount="1" TemperatureThreshold="60" ThresholdAbove="true" AlwaysUseCharge="false" WorksOnEquipper="true" WorksOnSelf="true" WorksOnWearer="true" WorksOnCarrier="false" WorksOnCellContents="true" WorksOnAdjacentCellContents="true" NameForStatus="InnateHeat" BehaviorDescription="Heats up the area when worn or placed." IsTechScannable="false"/>
+	<part Name="BootSequence" BootTime="1" ChargeUse="0" VerbOnBootInitialized="light" VerbOnBootAborted="" VerbOnBootDone="" IsEMPSensitive="false" IsTechScannable="false"/>
+	<part Name="LightSource" OnlyIfCharged="false" Radius="4" />
+    <part Name="Shield" AV="6" DV="-4" WornOn="Hand" />
+    <part Name="Description" Short="A crimson shield cut from the carapace of a live magma crab, radiating heat." />
+    <part Name="Commerce" Value="500" />
+    <part Name="Physics" Weight="20" />
+    <intproperty Name="Inorganic" Value="0" />
+    <tag Name="Tier" Value="6" />
+  </object>
+  <object Name="Great Magma Crab" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_magmacrabshield" MinimumDamage="10" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+<!-- Cat Phylactery -->
+<object Name="cats_catsummon" Inherits="Tool">
+    <part Name="Render" DisplayName="box of holy catnip" RenderString="004" ColorString="&amp;W" DetailColor="w" />
+    <part Name="Commerce" Value="100" />
+    <part Name="Description" Short="Ornately carved wood conceals a felt interior. An inscription speaks to the Loaf, and the honor of solitude." />
+    <part Name="Physics" Weight="1" Category="Tools" />
+    <part Name="SummoningCurio" Creature="Ray Cat"/>
+    <part Name="Examiner" Alternate="box" Complexity="6" />
+    <tag Name="Tier" Value="6" />
+	<property Name="Role" Value="Rare" />
+  </object>
+  <object Name="BaseDog" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_catsummon" MinimumDamage="10" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+<!-- Goodboy Phylactery -->
+<object Name="cats_dogsummon" Inherits="Tool">
+    <part Name="Render" DisplayName="box of holy treats" RenderString="004" ColorString="&amp;w" DetailColor="W" />
+    <part Name="Commerce" Value="100" />
+    <part Name="Description" Short="Ornately carved wood conceals a felt interior. An inscription speaks to the Goodest Boy, and the honor of pets." />
+    <part Name="Physics" Weight="1" Category="Tools" />
+    <part Name="SummoningCurio" Creature="Dog"/>
+    <part Name="Examiner" Alternate="box" Complexity="6" />
+    <tag Name="Tier" Value="6" />
+	<property Name="Role" Value="Rare" />
+  </object>
+  <object Name="BaseCat" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_dogsummon" MinimumDamage="10" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+<!-- Witchwood Club -->
+<object Name="cats_witchwoodclub" Inherits="BaseCudgel">
+    <part Name="Render" DisplayName="{{W|witchwood}} club" Tile="Items/sw_cudgel_10.bmp" TileColor="&amp;w" DetailColor="r"/>
+    <part Name="MeleeWeapon" MaxStrengthBonus="2" BaseDamage="1d2" Skill="Cudgel" Stat="Strength" />
+    <part Name="Commerce" Value="4" />
+    <part Name="Description" Short="A primitive club hewn from fragile witchwood." />
+    <tag Name="Tier" Value="1" />
+    <part Name="Physics" Weight="5" />
+	<part Name="ConfuseOnHit" Chance="10" Duration="2d4+1"/>
+	<part Name="BreakableInMelee" Chance="1" />
+    <tag Name="Hitsound" Value="meleeTier0" />
+  </object>
+  <object Name="Witchwood Tree" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_witchwoodclub" MinimumDamage="2" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+<!-- Waydroid Orb -->
+<object Name="cats_waydroidgrenade" Inherits="Grenade">
+    <part Name="Render" DisplayName="{{c|waydroid}} orb" Tile="Assets_Content_Textures_Items_sw_orb.bmp" TileColor="&amp;C" DetailColor="o"/>
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="30" />
+    <part Name="DeploymentGrenade" Blueprint="Waydroid" Count="1" Radius="2" RealRadius="true" LoyalToThrower="true" ActivationVerb="deploy" BlockedBySolid="true" BlockedByNonEmpty="true" DustPuff="true" DustPuffEach="true" />
+    <part Name="Description" Short="Scissor-like hinges fold metal rods into a tight sphere that's ready for isokinetic expansion on impact." />
+    <part Name="TinkerItem" Bits="022" CanBuild="false"/>
+    <tag Name="Mark" Value="1" />
+    <tag Name="Tier" Value="2" />
+    <tag Name="ExcludeFromTurretStock" />
+    <property Name="Role" Value="Rare" />
+  </object>
+  <object Name="Scrapped Waydroid" Load="Merge">
+	<part Name="DeployWith" Blueprint="cats_waydroidgrenade" PreferredDirection="S" />
+  </object>
+<!-- Saltback Pavise -->
+<object Name="cats_saltpavise" Inherits="BaseShield">
+    <part Name="Render" DisplayName="{{Y|salt}} pavise" Tile="items/sw_carapace.bmp" TileColor="&amp;y" DetailColor="Y" />
+	<part Name="Armor" AV="2" Cold="15" Heat="15" WornOn="Hand" />
+    <part Name="Shield" AV="6" DV="-4" WornOn="Hand" />
+    <part Name="Description" Short="A massive shield fashioned from a hunk of a great saltback's carapace." />
+    <part Name="Commerce" Value="600" />
+    <part Name="Physics" Weight="30" />
+    <part Name="Metal" />
+    <tag Name="Tier" Value="7" />
+	<tag Name="ExcludeFromDynamicEncounters" Value="noinherit"/>
+	<property Name="Role" Value="Rare" />
+  </object>
+  <object Name="Great Saltback" Load="Merge">
+	<inventoryobject Blueprint="cats_saltpavise" Number="1" Chance="5"/>
+	<tag Name="NoEquip" Value="cats_saltpavise" />
+	<property Name="WontSell" Value="cats_saltpavise" />
+  </object>
+<!-- Flora Cell -->
+<object Name="cats_floracell" Inherits="Liquid Fueled Energy Cell">
+    <part Name="Render" DisplayName="{{leafy|flora}} {{c|cell}}" ColorString="&amp;g" RenderString="'" RenderLayer="5" />
+    <part Name="LiquidFueledEnergyCell" Liquid="sap" ChargePerDram="650" />
+    <part Name="LiquidVolume" MaxVolume="8" Volume="0" StartVolume="0-8" InitialLiquid="sap-1000" />
+    <part Name="Description" Short="Inside the insulated cask of the battery, the electromotive apparatus cracks the energy out of plant sap and converts it to electrical charge." />
+    <part Name="Metal" />
+    <part Name="TinkerItem" Bits="001" CanDisassemble="true" CanBuild="true" />
+    <part Name="Commerce" Value="60" />
+    <tag Name="Tier" Value="1" />
+    <tag Name="DynamicObjectsTable:EnergyCells" />
+    <tag Name="TinkerCategory" Value="ammo and energy cells" />
+  </object>
+  <object Name="Asphodelyte" Load="Merge">
+	<inventoryobject Blueprint="cats_floracell" Number="1" Chance="5"/>
+  </object>
+<!-- Fu Wraps -->
+<object Name="cats_fuwrap" Inherits="BaseArmlet">
+    <part Name="Render" DisplayName="{{shemesh|fu wrap}}" Tile="items/sw_leather_bracers.bmp" DetailColor="y" ColorString="&amp;r" />
+	<part Name="MeleeWeapon" MaxStrengthBonus="999" BaseDamage="1" Skill="Cudgel" Stat="Agility" Slot="Arm" />
+    <part Name="Armor" AV="0" DV="1" Willpower="1" WornOn="Arm" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="12" />
+    <tag Name="Tier" Value="2" />
+    <part Name="Description" Short="Sporty arm wraps used by masters of unarmed combat, enabling the use of the elbows as fierce weapons." />
+	<tag Name="WeaponUnarmed" />
+  </object>
+  <object Name="BaseBaboon" Load="Merge">
+	<inventoryobject Blueprint="cats_fuwrap" Number="1" Chance="5"/>
+  </object>
+<!-- Boonie Hat -->
+<object Name="cats_booniecap" Inherits="BaseHat">
+    <part Name="Armor" AV="0" DV="1" ToHit="1" WornOn="Head" />
+    <part Name="Render" Tile="items/sw_hat.bmp" ColorString="&amp;g" DetailColor="w" DisplayName="{{camouflage|boonie}} cap" RenderString="]" />
+    <part Name="Commerce" Value="12" />
+    <part Name="Description" Short="A drab green hat with a low-hanging brim for shading the eyes." />
+    <part Name="Physics" Weight="1" />
+    <tag Name="Tier" Value="2" />
+    <tag Name="DynamicObjectsTable:Headwear" />
+    <intproperty Name="Inorganic" Value="0" />
+  </object>
+<!-- Water Bottle -->
+<object Name="cats_waterbottle" Inherits="WaterContainer">
+    <part Name="Render" DisplayName="{{plastifer|plastifer}} flask" ColorString="&amp;y" TileColor="&amp;y" DetailColor="Y" Tile="Items/sw_canteen.png" RenderLayer="6" Occluding="false" />
+    <part Name="Physics" Weight="0" Takeable="true" Solid="false" FlameTemperature="451"/>
+    <part Name="Description" Short="A small bottle composed of thin plastifer, complete with removabale lid. Not terribly sturdy, but very portable." />
+    <part Name="LiquidVolume" StartVolume="0" MaxVolume="16" ManualSeal="true" LiquidVisibleWhenSealed="true" />
+	<part Name="Commerce" Value="8" />
+	<stat Name="Hitpoints" Value="15" sValue="15" />
+    <property Name="FullDetailColor" Value="y" />
+    <property Name="EmptyDetailColor" Value="K" />
+    <part Name="PopulationLiquidFiller" Table="VesselLiquid_Standard" Volume="1d4" />
+	<intproperty Name="Inorganic" Value="1" />
+  </object>
+  <object Name="Mechanimist Pilgrim" Load="Merge">
+	<inventoryobject Blueprint="cats_chemlamp" Number="1d2" Chance="35"/>
+  </object>
+<!-- Breeder Cell -->
+<object Name="cats_breedercell" Inherits="Energy Cell">
+    <part Name="Render" Tile="items/sw_hitech_lightsource2.bmp" TileColor="&amp;C" DetailColor="O" DisplayName="{{W|breeder}} {{C|cell}}" RenderString="*" RenderLayer="5" />
+    <part Name="EnergyCell" Charge="50000" MaxCharge="50000" />
+    <part Name="Description" Short="A gentle warmth emenates from this heavy power core." />
+    <part Name="Metal" />
+    <part Name="IntegralRecharger" />
+	<part Name="FusionReactor" ChargeRate="111" ExplodeChance="50" ExplodeForce="4000"/>
+    <part Name="TinkerItem" Bits="088" CanDisassemble="true" CanBuild="true" />
+    <part Name="Commerce" Value="420" />
+	<part Name="TemperatureAdjuster" ChargeUse="1" IsEMPSensitive="true" IsBootSensitive="false" TemperatureAmount="1" TemperatureThreshold="10000" ThresholdAbove="true" AlwaysUseCharge="true" WorksOnEquipper="true" WorksOnSelf="false" WorksOnWearer="true" WorksOnCarrier="true" WorksOnCellContents="false" WorksOnAdjacentCellContents="false" InactiveOnWorldMap="true" NameForStatus="Micro-Fusion Breeder" />
+    <part Name="Physics" Weight="2" />
+	<tag Name="Tier" Value="10" />
+    <tag Name="TinkerCategory" Value="ammo and energy cells" />
+	<tag Name="ExcludeFromTurretStock" />
+	<tag Name="ExcludeFromDynamicEncounters" Value="NoInherit" />
+  </object>
+  <object Name="Leering Stalker" Load="Merge">
+	<inventoryobject Blueprint="cats_breedercell" Number="1" Chance="25"/>
+  </object>
+  <object Name="Chrome Pyramid" Load="Merge">
+	<inventoryobject Blueprint="cats_breedercell" Number="1d3" Chance="25"/>
+  </object>
+<!-- Chem Lamp -->
+<object Name="cats_chemlamp" Inherits="LightSource">
+    <part Name="Render" Tile="items/sw_hitech_lightsource2.bmp" TileColor="&amp;K" DetailColor="G" DisplayName="{{g|chemlamp}}" RenderString="*" RenderLayer="5" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="2" />
+    <part Name="Description" Short="Chemically reactive material contained in a housing which produces light. Hopefully nothing leaks out." />
+    <part Name="Stacker" />
+    <part Name="LightSource" Lit="true" Radius="7" OnlyIfCharged="True" />
+    <part Name="Capacitor" MaxCharge="7500" StartCharge="5000-7500" IsEMPSensitive="false" ChargeRate="0" ChargeLossDisable="false"/>
+	<part Name="PoisonMelee" Chance="1" Strength="20" DamageIncrement="1d2" Duration="1d10+10" />
+	<part Name="LiquidProducer" Liquid="goo" VariableRate="800-2500" WorksOnEquipper="true" WorksOnSelf="false" PreferCollectors="false" WorksOnCarrier="false" FillSelfOnly="false" IsTechScannable="false" IsEMPSensitive="false"/>
+	<part Name="ChargeSink" ChargeUse="1" NameForStatus="ChemReaction" WorksOnEquipper="true" WorksOnSelf="false" IsPowerSwitchSensitive="true" />
+	<part Name="PowerSwitch" EnergyCost="100" FlippableWithoutUnderstanding="true" ActivateSuccessMessage="" ActivateFailureMessage="" DeactivateSuccessMessage="" DeactivateFailureMessage="" />
+	<part Name="TinkerItem" Bits="1" CanDisassemble="true" CanBuild="false" />
+    <tag Name="Tier" Value="0" />
+  </object>
+  <object Name="Glow Wight" Load="Merge">
+	<inventoryobject Blueprint="cats_chemlamp" Number="1d2" Chance="10"/>
+  </object>
+<!-- Silk Slippers -->
+<object Name="cats_silkslippers" Inherits="BaseBoot">
+    <part Name="Armor" AV="0" DV="1" WornOn="Feet" />
+    <part Name="Render" DisplayName="{{Y|silk}} slippers" Tile="Items/sw_slippers.bmp" ColorString="&amp;y" DetailColor="Y" RenderString="]" />
+    <part Name="Commerce" Value="30" />
+    <part Name="Description" Short="Soft, comfy slippers fashioned from spider silk." />
+    <part Name="Physics" Weight="1" />
+	<part Name="GreaseBoots" />
+    <tag Name="Tier" Value="4" />
+    <intproperty Name="Inorganic" Value="0" />
+    <tag Name="Gender" Value="plural" />
+  </object>
+  <object Name="BaseSpider" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_silkslippers" MinimumDamage="5" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+<!-- Muscle Doper -->
+<object Name="cats_muscledoper" Inherits="BaseBracelet">
+    <part Name="Armor" AV="0" DV="0" WornOn="Arm" />
+    <part Name="Render" DisplayName="muscle {{r|doper}}" RenderString="x" Tile="Items/sw_parabolic.bmp" ColorString="&amp;r" DetailColor="Y" />
+    <part Name="Commerce" Value="80" />
+    <part Name="Description" Short="Clasps lock around the arm of the wearer, situating the device where it will deliver more blood to thirsty muscles." />
+    <part Name="Physics" Weight="2" />
+    <part Name="Examiner" Alternate="bracelet" Complexity="2" Difficulty="0" />
+    <part Name="TinkerItem" Bits="0124" CanDisassemble="true" CanBuild="true" />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-4" InitialLiquid="blood-1000" />
+	<part Name="LiquidFueledPowerPlant" Liquid="blood" ChargePerDram="1000" ConsiderLive="False" IsEMPSensitive="true" />
+	<part Name="LeakWhenBroken" />
+	<part Name="EquipStatBoost" Boosts="Toughness:1;Strength:1" ChargeUse="2" IsBootSensitive="true" IsEMPSensitive="true" RequiresBodyPartCategory="Animal" />
+	<part Name="BootSequence" BootTime="5" ChargeUse="10" ReadoutInName="true" ReadoutInDescription="true" />
+    <tag Name="Mods" Value="CommonMods,LiquidMods" />
+    <tag Name="Tier" Value="4" />
+  </object>
+  <object Name="Caravan Guard" Load="Merge">
+	<inventoryobject Blueprint="cats_muscledoper" Number="1" Chance="5"/>
+	<inventoryobject Blueprint="cats_chemlamp" Number="1d4-1" Chance="25"/>
+  </object>
+<!-- Beautifier -->
+<object Name="cats_beautygram" Inherits="Armor">
+    <part Name="Armor" AV="0" DV="0" WornOn="Floating Nearby" />
+    <part Name="Render" DisplayName="{{lovesickness|BEAUTYGRAM}}" RenderString="]" Tile="Items/sw_lens.bmp" DetailColor="M" />
+    <part Name="Commerce" Value="235" />
+    <part Name="Description" Short="The eaters somehow weren't enough for themselves, and have repainted their image with fictionalized holograms." />
+    <part Name="Physics" Weight="3" />
+	<part Name="EquipStatBoost" Boosts="Ego:4" ChargeUse="10" IsBootSensitive="true" IsEMPSensitive="true" />
+    <part Name="EnergyCellSocket" SlotType="EnergyCell" />
+    <part Name="BootSequence" BootTime="5" ReadoutInName="true" ChargeUse="9" ReadoutInDescription="true" />
+    <part Name="PowerSwitch" EnergyCost="100" FlippableWithoutUnderstanding="true" ActivateSuccessMessage="" ActivateFailureMessage="" DeactivateSuccessMessage="" DeactivateFailureMessage="" />
+    <part Name="Examiner" Complexity="3" Difficulty="0" />
+    <part Name="TinkerItem" Bits="0125" CanDisassemble="true" CanBuild="true" />
+	<part Name="ModDisguise" />
+	<part Name="RequiresPowerToEquip" ChargeUse="1" />
+	<tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+    <tag Name="Tier" Value="5" />
+  </object>
+<!-- Kuckledusters -->
+<object Name="cats_kuckleduster" Inherits="BaseCudgel">
+    <part Name="Render" DisplayName="knuckleduster" Tile="Items/sw_first_ape_god.bmp" ColorString="&amp;k" DetailColor="w" RenderString="\" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="999" BaseDamage="1d2" Skill="Cudgel" Stat="Strength" />
+    <part Name="Commerce" Value="5" />
+    <part Name="Description" Short="A crude metal implement held in hand to deliver blows." />
+    <part Name="Metal" />
+    <tag Name="Tier" Value="0" />
+    <part Name="Physics" Weight="1" />
+    <tag Name="WeaponUnarmed" />
+  </object>
+  <object Name="Snapjaw Brute" Load="Merge">
+	<inventoryobject Blueprint="cats_kuckleduster" Number="1d2" Chance="7"/>
+	<inventoryobject Blueprint="cats_muscledoper" Number="1" Chance="1"/>
+  </object>
+<!-- Sports Cap -->
+<object Name="cats_sportscap" Inherits="BaseHat">
+    <part Name="Armor" AV="0" DV="1" Agility="1" WornOn="Head" />
+    <part Name="Render" DisplayName="sports cap" RenderString="]" ColorString="&amp;B" DetailColor="W" Tile="Items/sw_cap.bmp" />
+    <part Name="Commerce" Value="20" />
+    <part Name="Description" Short="A brightly colored cap worn by hunters and athletes." />
+    <part Name="Physics" Weight="1" />
+    <tag Name="Tier" Value="2" />
+    <tag Name="DynamicObjectsTable:Headwear" />
+    <intproperty Name="Inorganic" Value="0" />
+  </object>
+  <object Name="BaseFarmer" Load="Merge">
+	<inventoryobject Blueprint="cats_sportscap" Number="1" Chance="25"/>
+  </object>
+  <object Name="Snapjaw Hunter" Load="Merge">
+	<inventoryobject Blueprint="cats_sportscap" Number="1" Chance="1"/>
+	<inventoryobject Blueprint="cats_booniecap" Number="1" Chance="10"/>
+  </object>
+<!-- Plantpack -->
+<object Name="cats_plantpack" Inherits="BaseCloak">
+    <part Name="Armor" WornOn="Back" AV="0" CarryBonus="15" />
+    <part Name="Render" DisplayName="{{leafy|plantpack}}" ColorString="&amp;g" Tile="Items/sw_backpack.bmp" DetailColor="G" />
+    <part Name="Commerce" Value="35" />
+    <part Name="Physics" Weight="8" />
+    <part Name="Description" Short="Those who dwell deep in the jungles have learned to grow plants in shapes of their own will, bending nature into packs and clothing. It still drips sap." />
+	<part Name="Yurtmat" Bonus="1" />
+	<part Name="LiquidProducer" Liquid="sap" Rate="1000" WorksOnWearer="true" WorksOnSelf="true" PreferCollectors="true" WorksOnCarrier="false" FillSelfOnly="false" IsTechScannable="false" IsEMPSensitive="false"/>
+	<tag Name="LivePlant" />
+    <tag Name="Tier" Value="3" />
+  </object>
+<!-- Space Heater -->
+  <object Name="cats_heater" Inherits="Armor">
+    <part Name="Armor" AV="1" DV="-2" WornOn="Back" />
+    <part Name="Render" DisplayName="portable heater" RenderString="]" Tile="items/sw_beehive.bmp" TileColor="&amp;k" DetailColor="R" />
+    <part Name="Commerce" Value="100" />
+    <part Name="Physics" Weight="20" />
+    <part Name="Description" Short="A bulky mechanism that converts electricity to heat. Straps on its back allow it to be worn or carried." />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" />
+	<part Name="TinkerItem" Bits="001345" CanDisassemble="true" CanBuild="true" />
+    <part Name="Metal" />
+	<part Name="Examiner" Alternate="backpack" Complexity="3" />
+	<part Name="TemperatureAdjuster" ChargeUse="100" IsEMPSensitive="true" IsBootSensitive="true" TemperatureAmount="20" TemperatureThreshold="120" ThresholdAbove="true" AlwaysUseCharge="true" WorksOnEquipper="true" WorksOnSelf="true" WorksOnWearer="true" WorksOnCarrier="false" WorksOnCellContents="true" WorksOnAdjacentCellContents="true" NameForStatus="HeatingCoil" BehaviorDescription="Heats up the area around the wearer when in operation." />
+	<part Name="BootSequence" BootTime="10" ChargeUse="100" VerbOnBootInitialized="light" VerbOnBootAborted="darken" VerbOnBootDone="hum" />
+	<part Name="LightSource" OnlyIfCharged="true" Radius="2" />
+    <tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+	<tag Name="Tier" Value="4" />
+  </object>
+  <object Name="Mechanimist" Load="Merge">
+	<inventoryobject Blueprint="cats_heater" Number="1" Chance="1"/>
+  </object>
+<!-- Reclamation Pellet -->
+<object Name="cats_bloodpellet" Inherits="Item">
+    <part Name="Examiner" Complexity="2" Unknown="UnknownTinyTrinket" Alternate="UnknownPill" />
+    <part Name="Render" DisplayName="{{r|reclamation}} pellet" ColorString="&amp;r" RenderString="&quot;" RenderLayer="5" Tile="Items/sw_pellet.bmp" />
+    <part Name="Physics" Category="Applicators" Weight="0" />
+    <part Name="Description" Short="A chalky red pellet carried by dwellers of the deep desert for morbid hydration." />
+    <part Name="Commerce" Value="10" />
+    <part Name="Applicator" />
+    <part Name="DesalinationPellet" RemoveLiquid="salt" RemoveLiquidAmount="1" ConvertLiquid="blood" ConvertLiquidTo="water" ConvertLiquidAmount="64" Message="=subject.The==subject.name= =verb:fizzle= for several seconds." />
+    <tag Name="Tier" Value="1" />
+  </object>
+<!-- Shadowcloak -->
+<object Name="cats_shadowcloak" Inherits="BaseCloak">
+    <part Name="Armor" AV="0" DV="2" WornOn="Back" />
+    <part Name="Render" DisplayName="{{nanotech|shadowcloak}}" RenderString="]" Tile="items/sw_shawl.bmp" ColorString="&amp;K" DetailColor="k" />
+    <part Name="Commerce" Value="100" />
+	<part Name="Blackout" Radius="2" OnlyIfCharged="true" />
+    <part Name="Description" Short="A cloak blacker than the night, consuming power to suck in nearby light." />
+    <part Name="Physics" Weight="3" Category="Clothes" />
+	<part Name="ChargeSink" ChargeUse="20" NameForStatus="Blackout" WorksOnWearer="true" WorksOnSelf="true" WorksOnCarrier="false" />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" ChanceSlotted="50" />
+    <tag Name="Tier" Value="5" />
+    <intproperty Name="Inorganic" Value="0" />
+  </object>
+  <object Name="Vantabud" Load="Merge">
+	<inventoryobject Blueprint="cats_shadowcloak" Number="0-1" Chance="1"/>
+  </object>
+  <object Name="Vantabloom" Load="Merge">
+	<inventoryobject Blueprint="cats_shadowcloak" Number="1" Chance="1"/>
+  </object>
+<!-- Katar -->
+<object Name="cats_katar" Inherits="BaseDagger">
+    <part Name="Render" DisplayName="katar" Tile="Items/sw_shortblade_11.bmp" RenderString="\" DetailColor="w" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="3" BaseDamage="1d4" Skill="ShortBlades" Stat="Agility" Slot="Hand" />
+    <part Name="Commerce" Value="20" />
+    <part Name="Stainless" />
+    <part Name="Description" Short="A short, iron blade that braces against the wearer's arm." />
+    <part Name="Metal" />
+	<part Name="BleedingOnHit" Amount="1d2" SaveTarget="16" Stack="true" />
+    <tag Name="Tier" Value="3" />
+	<tag Name="UsesSlots" Value="Hand,Arm" />
+    <tag Name="Hitsound" Value = "Hit_Default" />
+  </object>
+<!-- Targeting HUD -->
+<object Name="cats_aimbot" Inherits="BaseMask">
+    <part Name="Render" DisplayName="{{visage|targeting interface}}" Tile="Items/sw_visage.bmp" ColorString="&amp;C" DetailColor="O" />
+    <part Name="Armor" AV="0" DV="0" ToHit="3" WornOn="Face" />
+	<part Name="RequiresPowerToEquip" ChargeUse="3" />
+    <part Name="Commerce" Value="200" />
+    <part Name="Description" Short="Data and reticles are painted across the projected screen of this device, providing readouts on target distance and movement speed." />
+    <part Name="Physics" Weight="5" Category="Artifacts" />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" SlottedType="#Solar Cell,@DynamicObjectsTable:EnergyCells:Tier{zonetier}" />
+    <part Name="Examiner" Complexity="5" />
+    <part Name="TinkerItem" Bits="001256" CanDisassemble="true" CanBuild="true" />
+    <part Name="Metal" />
+	<tag Name="Mods" Value="CommonMods,ElectronicsMods,EyewearMods" />
+    <tag Name="Tier" Value="5" />
+  </object>
+  <object Name="Mysterious Gunslinger" Load="Merge">
+	<inventoryobject Blueprint="cats_aimbot" Number="1" Chance="2"/>
+	<inventoryobject Blueprint="cats_booniecap" Number="1" Chance="10"/>
+  </object>
+<!-- Cupid's Arrow -->
+<object Name="cats_heartarrow" Inherits="BaseArrow">
+    <part Name="Render" DisplayName="{{amorous|cupid's}} arrow" ColorString="&amp;r" />
+    <part Name="AmmoArrow" ProjectileObject="cats_cardiacarrowproj" />
+    <part Name="Description" Short="The fibers of love are interwoven with the beautifully shaped head of this arrow, which will surely stop hearts." />
+    <part Name="Commerce" Value="1000" />
+    <tag Name="ExcludeFromTurretStock" />
+  </object>
+  <object Name="cats_cardiacarrowproj" Inherits="BaseArrowProjectile">
+    <part Name="Render" DisplayName="{{Y|amorous}} arrow" ColorString="&amp;Y" />
+    <part Name="Projectile" StrengthPenetration="10" BaseDamage="1d10+1" ColorString="&amp;Y" />
+	<part Name="CardiacArrestOnHit" />
+  </object>
+  <object Name="AppleFarmerDaughter" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_heartarrow" MinimumDamage="10" Chance="10" SpawnAsDropColor="false"/>
+  </object>
+<!-- Naphtaali Mask -->
+<object Name="cats_tribemask" Inherits="BaseMask">
+    <part Name="Render" DisplayName="naphtaali mask" RenderString="]" Tile="items/sw_mask.bmp" ColorString="&amp;w" DetailColor="g" />
+    <part Name="Armor" AV="0" DV="0" WornOn="Face" />
+    <part Name="AddsRep" Faction="Naphtaali" Value="200"/>
+    <part Name="Commerce" Value="4" />
+    <part Name="Description" Short="A crude wooden mask worn by tribal savages." />
+    <part Name="Physics" Weight="1" />
+    <tag Name="Tier" Value="1" />
+  </object>
+	<object Name="Naphtaali" Load="Merge">
+	<inventoryobject Blueprint="cats_tribemask" Number="1" Chance="3"/>
+	<inventoryobject Blueprint="cats_plantpack" Number="1" Chance="1"/>
+	<inventoryobject Blueprint="cats_witchwoodclub" Number="1" Chance="15"/>
+  </object>
+  <!-- Torcher Gauntlet -->
+  <object Name="cats_wristflame" Inherits="BaseBracelet">
+    <part Name="Render" DisplayName="{{fiery|torcher gauntlet}}" Tile="Assets_Content_Textures_Items_sw_orb.bmp" ColorString="&amp;Y" DetailColor="R" RenderString="o" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="0" BaseDamage="1" Skill="Axe" Slot="Arm" />
+	<part Name="ElementalDamage" Damage="3d4" Attributes="Heat" ChargeUse="5" />
+	<part Name="Armor" AV="1" />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-3" InitialLiquid="oil-1000" />
+    <part Name="LeakWhenBroken" />
+	<part Name="LiquidFueledPowerPlant" Liquid="oil" ChargePerDram="10" ConsiderLive="False" IsEMPSensitive="true" />
+    <part Name="TemperatureOnHit" Amount="350-400" Max="true" MaxTemp="900" OnWielderHit="true" />
+    <part Name="Commerce" Value="80" />
+    <part Name="Description" Short="A tiny flamethrower intalled in a steel gauntlet, for use in close quarters combat." />
+    <part Name="Metal" />
+	<part Name="Physics" Weight="5" />
+	<part Name="TinkerItem" Bits="0123" CanDisassemble="true" CanBuild="true" />
+	<part Name="Examiner" Alternate="strange tubes" Complexity="2" Difficulty="0" />
+	<tag Name="Mods" Value="CommonMods,WeaponMods" />
+    <tag Name="Tier" Value="3" />
+    <tag Name="Hitsound" Value="flamethrower" />
+  </object>
+<!--Hyrkhound Jawbone -->
+	<object Name="cats_hyrkjaw" Inherits="MeleeWeapon">
+    <part Name="Render" DisplayName="hyrkhound jawbone" Tile="Items/sw_wreath.bmp" RenderString="c" ColorString="&amp;y" DetailColor="g" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="2" BaseDamage="1d3" Skill="Cudgel" Stat="Strength" />
+	<part Name="ElementalDamage" Damage="1d3+3" Attributes="Acid" ChargeUse="1" />
+    <part Name="Commerce" Value="25" />
+	<part Name="Physics" Weight="5" />
+    <part Name="Description" Short="This intact hyrkhound jawbone still holds reserves of acids." />
+	<part Name="AddsRep" Faction="Dogs" Value="-200" />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-3" InitialLiquid="acid-1000" />
+    <part Name="LeakWhenBroken" />
+	<part Name="LiquidFueledPowerPlant" Liquid="acid" ChargePerDram="10" ConsiderLive="False" IsEMPSensitive="False" IsTechScannable="false"/>
+    <tag Name="Tier" Value="3" />
+    <tag Name="Hitsound" Value = "meleeTier3" />
+	<tag Name="Mods" Value="CudgelMods,WeaponMods,CommonMods" />
+  </object>
+  <object Name="Hyrkhound" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_hyrkjaw" MinimumDamage="3" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Thinking Cap -->
+  <object Name="cats_brainhat" Inherits="BaseHelmet">
+    <part Name="Render" DisplayName="{{illuminated|thinking cap}}" Tile="Items/sw_skullcap.bmp" RenderString="h" ColorString="&amp;m" DetailColor="c"/>
+    <part Name="Armor" WornOn="Head" />
+	<part Name="Commerce" Value="220" />
+    <part Name="Description" Short="Neuron accelerators fire rapidly, pulsating across the cap's inner membrane." />
+	<part Name="AddsRep" Faction="Barathrumites" Value="100" />
+	<part Name="EquipStatBoost" Boosts="Intelligence:4;Ego:2;" ChargeUse="10" IsBootSensitive="true" IsEMPSensitive="true" IsRealityDistortionBased="false" WorksOnWearer="true" WorksOnSelf="false" RequiresBodyPartCategory="Animal" />
+	<part Name="BootSequence" BootTime="10" ChargeUse="100" VerbOnBootInitialized="initiate" VerbOnBootAborted="clack" VerbOnBootDone="buzz" />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" />
+	<part Name="Toolbox" ChargeUse="50" PoweredDisassembleBonus="40" UnpoweredDisassembleBonus="0" PoweredInspectBonus="6" UnpoweredInspectBonus="0" WorksOnWearer="true" IsBootSensitive="true" WorksOnCarrier="false" BehaviorDescription="When worn and powered, this item massively increases the chance of identifying artifacts and recovering additional bits when you disassemble artifacts." />
+	<part Name="AddsTelepathyOnEquip" IsBootSensitive="true" />
+	<part Name="Examiner" Alternate="weird hat" Complexity="5" Difficulty="1" />
+    <tag Name="Tier" Value="6" />
+    <part Name="Physics" Weight="5" />
+  </object>
+  <object Name="Boar" Load="Merge">
+	<inventoryobject Blueprint="cats_brainhat" Number="0-1" Chance="1"/>
+  </object>
+  <!-- Sap Proboscis -->
+	<object Name="cats_proboscis" Inherits="BaseDagger">
+    <part Name="Render" DisplayName="sap proboscis" Tile="Items/sw_shortblade_1.bmp" RenderString="i" ColorString="&amp;r" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="2" BaseDamage="1d3" Skill="ShortBlades" Stat="Agility" />
+    <part Name="Commerce" Value="10" />
+    <part Name="Description" Short="The proboscis of a sap, still filled with the blood of its victims." />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-2" InitialLiquid="blood-1000" />
+    <part Name="LeakWhenBroken" />
+	<part Name="LiquidProducer" Liquid="blood" Rate="1000" FillSelfOnly="true" IsTechScannable="false" IsEMPSensitive="false" WorksOnEquipper="true" WorksOnSelf="false" RequiresBodyPartCategory="Animal" />
+	<part Name="VampiricWeapon" Maximum="1d3" RequiresLivingTarget="true" RealityDistortionBased="false" />
+    <tag Name="Tier" Value="2" />
+    <tag Name="Hitsound" Value = "Hit_Default" />
+  </object>
+  <object Name="Juice Sap" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_proboscis" MinimumDamage="3" Chance="3" SpawnAsDropColor="false"/>
+  </object>
+  <object Name="Stat Sap" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_proboscis" MinimumDamage="3" Chance="3" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Sawhander Blade -->
+	<object Name="cats_sawblade" Inherits="Item">
+    <part Name="Render" DisplayName="circular sawblade" RenderString="." Tile="Items/sw_disk2.bmp" DetailColor="w" ColorString="&amp;w" Occluding="false" />
+    <part Name="Physics" Weight="3" Takeable="true" Solid="false" FlameTemperature="99999" VaporTemperature="9999" />
+    <part Name="Description" Short="A round sawblade once used in a power tool. Its serrated teeth retain their sharpness, despite being covered with a thin layer of rust." />
+    <part Name="ThrownWeapon" Damage="1d8" Penetration="6" />
+    <part Name="Commerce" Value="4" />
+	<part Name="BleedingOnHit" Stack="true" />
+    <part Name="TinkerItem" Bits="0" CanDisassemble="true" CanBuild="false" />
+	<part Name="Stainless" />
+	<tag Name="Mods" Value="CommonMods,ThrownWeaponMods" />
+    <tag Name="Tier" Value="2" />
+  </object>
+  <object Name="Sawhander" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_sawblade" MinimumDamage="3" Chance="5" SpawnAsDropColor="false"/>
+	<inventoryobject Blueprint="cats_powersaw" Number="1" Chance="1"/>
+	<tag Name="NoEquip" Value="cats_powersaw" />
+	<property Name="WontSell" Value="cats_powersaw" />
+  </object>
+ <!-- Snapjaw Jawbone -->
+	<object Name="cats_jawbone" Inherits="MeleeWeapon">
+    <part Name="Render" DisplayName="snapjaw jawbone" Tile="Items/sw_wreath.bmp" RenderString="c" ColorString="&amp;y" DetailColor="Y"  />
+    <part Name="MeleeWeapon" MaxStrengthBonus="2" BaseDamage="1d3" Skill="Cudgel" Ego="1" Stat="Strength" />
+    <part Name="Commerce" Value="2" />
+    <part Name="Description" Short="The jawbone of a snapjaw, still containing a few sharp teeth." />
+	<part Name="BleedingOnHit" Amount="1d2" SaveTarget="8" Stack="true" />
+	<part Name="AddsRep" Faction="Snapjaws" Value="-200" />
+	<part Name="Physics" Weight="2" />
+    <tag Name="Tier" Value="1" />
+    <tag Name="Hitsound" Value = "meleeTier0" />
+	<tag Name="Mods" Value="CudgelMods,WeaponMods,CommonMods" />
+  </object>
+  <object Name="Snapjaw Warlord" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_jawbone" MinimumDamage="3" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <object Name="Snapjaw Feeder" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_jawbone" MinimumDamage="3" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Ram's Horn -->
+  <object Name="cats_ramhorn" Inherits="Item">
+    <part Name="Render" DisplayName="ram's horn" Tile="creatures/sw_goathorn.bmp" DetailColor="w" RenderString="*" ColorString="&amp;w" RenderLayer="5" />
+	<part Name="MeleeWeapon" MaxStrengthBonus="2" BaseDamage="1d2"  Skill="ShortBlades" Stat="Agility" />
+    <part Name="Commerce" Value="50" />
+    <part Name="Description" Short="The curved, pointed horn of a majestic beast sought-out by trophy hunters." />
+    <part Name="Physics" Weight="4" Category="Trade Goods" />
+    <tag Name="Tier" Value="1" />
+    <tag Name="DynamicObjectsTable:TradeGoods" />
+  </object>
+  <object Name="Goat" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_ramhorn" MinimumDamage="5" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <object Name="Goatfolk" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_ramhorn" MinimumDamage="5" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Electrofuge Mandibles -->
+  <object Name="cats_electromandible" Inherits="BaseDagger">
+    <part Name="Render" DisplayName="{{W|sparking mandibles}}" Tile="Items/sw_shortblade_5.bmp" ColorString="&amp;W" RenderString="\" DetailColor="k"/>
+    <part Name="MeleeWeapon" MaxStrengthBonus="2" BaseDamage="1d2" Skill="ShortBlades" Stat="Agility" />
+	<part Name="ElementalDamage" Damage="1" Attributes="Electric" ChargeUse="0" />
+    <part Name="Commerce" Value="40" />
+    <part Name="Description" Short="These oversized insectoid mandibles buzz with static electricity." />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" ChanceSlotted="0"/>
+	<part Name="SapChargeOnHit" Amount="10d20" Single="true" BehaviorDescription="On a successful hit, drains electrical charge from its target and its target's equipment and transfers the charge to the energy cell slotted into itself with poor efficiency." />
+    <part Name="SlottedCellCharger" />
+    <tag Name="Tier" Value="3" />
+    <tag Name="Hitsound" Value = "Hit_Default" />
+  </object>
+  <object Name="Electrofuge" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_electromandible" MinimumDamage="3" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <object Name="Spark Tick" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_electromandible" MinimumDamage="3" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Krakenhide -->
+  <object Name="cats_krakencloak" Inherits="BaseCloak">
+    <part Name="Armor" AV="4" DV="-1" WornOn="Back" Heat="15" Cold="15" />
+    <part Name="Render" DisplayName="living krakenhide" RenderString="]" Tile="Items/sw_voider_gland.bmp" ColorString="&amp;y" DetailColor="y" />
+    <part Name="Commerce" Value="1000" />
+    <part Name="Description" Short="The great grandmothers and grandfathers of the salt dunes are sometimes shed of their skin by the mightiest warriors of the lands. These skins still live and breathe, hardening themselves with the salts carried by the winds." />
+    <part Name="Physics" Weight="20" />
+	<part Name="LiquidVolume" MaxVolume="1" StartVolume="1" InitialLiquid="salt-1000" />
+	<part Name="LiquidProducer" Liquid="salt" VariableRate="600-1500" FillSelfOnly="false" IsTechScannable="false" IsEMPSensitive="false" WorksOnEquipper="true" WorksOnSelf="true" PreferCollectors="true"/>
+	<part Name="AddsRep" Faction="Mollusks" Value="-2000" />
+    <tag Name="Tier" Value="9" />
+  </object>
+  <object Name="Saltwurm" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_krakencloak" MinimumDamage="20" Chance="5" SpawnAsDropColor="false"/>
+	<inventoryobject Blueprint="cats_krakenpearl" Number="0-1" />
+	<property Name="WontSell" Value="cats_krakenpearl" />
+  </object>
+  <!-- Kraken Pearl -->
+  <object Name="cats_krakenpearl" Inherits="Item">
+    <part Name="Render" DisplayName="{{Y|kraken pearl}}" Tile="Items/sw_nugget.bmp" DetailColor="Y" RenderString="*" ColorString="&amp;y" RenderLayer="5" />
+    <part Name="Commerce" Value="1000" />
+    <part Name="Description" Short="As they glide through the salts and sands of a forgotten world, the great grandmothers and grandfathers gather minerals of eons." />
+    <part Name="Physics" Category="Trade Goods" />
+    <intproperty Name="Currency" Value="1" />
+    <tag Name="Tier" Value="9" />
+	<tag Name="ExcludeFromDynamicEncounters" />
+  </object>
+  <!-- Symbiotic Vinovine -->
+  <object Name="cats_winebracelet" Inherits="BaseBracelet">
+    <part Name="Armor" AV="1" DV="0" WornOn="Arm" />
+    <part Name="Render" DisplayName="symbiotic {{m|vinovine}}" RenderString="x" Tile="Assets_Content_Textures_Creatures_sw_plant.bmp" ColorString="&amp;g" DetailColor="M" />
+    <part Name="Commerce" Value="100" />
+    <part Name="Description" Short="A clipping of a tough, bloodthirsty vine that happens to grow grapes. Sharp thorns protect the wearer from attacks, and potentially enhance their own." />
+    <part Name="Physics" Weight="1" />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-2" InitialLiquid="wine-1000" />
+    <part Name="LiquidProducer" Liquid="wine" Rate="1200" WorksOnWearer="true" WorksOnSelf="false" FillSelfOnly="true" IsTechScannable="false" IsEMPSensitive="false" />
+	<part Name="DestroyOnUnequip" Message="The vinovine is killed."/>
+	<part Name="RulesDescription" Text="When worn, generates a small amount of wine which must be manually collected. Once equipped, removing the vine will destroy it." />
+	<part Name="AddsRep" Faction="Vines" Value="200" />
+	<part Name="BleedingOnHit" Amount="1d2" SaveTarget="18" SelfOnly="false" RequireDamageAttribute="Unarmed" Stack="true" />
+	<intproperty Name="Inorganic" Value="0" />
+	<tag Name="LivePlant" />
+    <tag Name="Mods" Value="None" />
+    <tag Name="Tier" Value="5" />
+  </object>
+  <object Name="Livid Creeper" Load="Merge">
+	<inventoryobject Blueprint="cats_winebracelet" Number="1" Chance="5"/>
+  </object>
+  <object Name="Jilted Lover" Load="Merge">
+	<inventoryobject Blueprint="cats_winebracelet" Number="1" Chance="1"/>
+  </object>
+  <!-- Sanguine Catalyzer -->
+  <object Name="cats_bloodconverter" Inherits="BaseBracelet">
+    <part Name="Armor" AV="0" DV="0" Toughness="-1" WornOn="Arm" />
+    <part Name="Render" DisplayName="{{r|sanguine}} catalyzer" RenderString="x" Tile="Items/sw_psychal_gland.bmp" ColorString="&amp;r" DetailColor="Y" />
+    <part Name="Commerce" Value="200" />
+    <part Name="Description" Short="Tiny tubes stick out the bottom of this mechanical contraption, designed to sink into the veins. This lifeblood is then turned into another: water." />
+    <part Name="Physics" Weight="1" Category="Artifacts" />
+    <part Name="Examiner" Alternate="strange tubes" Complexity="2" Difficulty="0" />
+    <part Name="TinkerItem" Bits="0123" CanDisassemble="true" CanBuild="true" />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-4" InitialLiquid="water-1000" />
+    <part Name="LiquidProducer" Liquid="water" Rate="1000" WorksOnWearer="true" WorksOnSelf="false" IsEMPSensitive="true" RequiresBodyPartCategory="Animal"/>
+	<part Name="LeakWhenBroken" />
+	<part Name="RulesDescription" Text="Generates water at the expense of the wearer's vitality." />
+	<part Name="BootSequence" BootTime="1000" ChargeUse="0" VerbOnBootInitialized="hum" VerbOnBootAborted="buzz" VerbOnBootDone="beep" IsEMPSensitive="false" IsTechScannable="true" NameForStatus="BloodInitialize"/>
+    <tag Name="Mods" Value="CommonMods,LiquidMods" />
+    <tag Name="Tier" Value="3" />
+  </object>
+  <object Name="BaseIssachari" Load="Merge">
+	<inventoryobject Blueprint="cats_bloodconverter" Number="1d3" Chance="1"/>
+	<inventoryobject Blueprint="cats_solarpack" Number="1" Chance="1"/>
+	<inventoryobject Blueprint="cats_katar" Number="1d2" Chance="15"/>
+	<inventoryobject Blueprint="cats_bloodpellet" Number="1" Chance="3"/>
+	<inventoryobject Blueprint="cats_bonedart" Number="1d3" Chance="10"/>
+  </object>
+  <!-- Madpole Maw -->
+  <object Name="cats_madmaw" Inherits="BaseAxe">
+    <part Name="Render" DisplayName="{{W|madpole}} maw" Tile="Items/sw_wreath.bmp" ColorString="&amp;Y" DetailColor="W" RenderString="c" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="5" BaseDamage="1d6" Skill="Axe" />
+    <part Name="Commerce" Value="175" />
+    <part Name="Description" Short="The complete jawbone of a madpole still sports its wicked fangs, making it an ideal weapon." />
+	<part Name="BleedingOnHit" Amount="2d2" SaveTarget="18" Stack="true" />
+	<part Name="LatchesOn" InitialSaveTarget="10" InitialSaveStat="Agility" InitialSaveDifficultyStat="Agility" MoveSaveTarget="20" MoveSaveStat="Strength" MoveSaveDifficultyStat="Strength" BreakSaveTarget="10" BreakSaveStat="Strength" BreakSaveDifficultyStat="Strength" Duration="3d4" AutoAttackOnMove="false" AutoAttackOnMoveAway="false" AutoAttackPerTurn="true" BloodSpatterOnLatch="true" />
+    <tag Name="Tier" Value="5" />
+    <part Name="Physics" Weight="6" />
+    <tag Name="Hitsound" Value = "Hit_Default" />
+	<part Name="AddsRep" Faction="Fish" Value="-200" />
+	<tag Name="ExcludeFromDynamicEncounters" />
+  </object>
+  <object Name="Madpole" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_madmaw" MinimumDamage="10" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Pearfrog Tongue -->
+  <object Name="cats_stickytongue" Inherits="BaseMissileWeapon">
+	<part Name="Render" DisplayName="{{M|sticky tongue}}" Tile="Creatures/sw_sprouting_worm.bmp" RenderString="|" DetailColor="M" ColorString="&amp;M" />
+	<part Name="Commerce" Value="100" />
+	<part Name="Description" Short="The long, sticky tongue of a pearlfrog fashioned into a whip-like weapon." />
+    <part Name="Physics" Weight="25" Category="Missile Weapon" UsesTwoSlots="true" />
+	<part Name="MissileWeapon" Skill="Rifle" AmmoChar="&amp;M~~;" MaxRange="6" ShotsPerAction="1" AmmoPerAction="1" ShotsPerAnimation="1" WeaponAccuracy="4" ProjectilePenetrationStat="Strength" />
+	<part Name="CooldownAmmoLoader" Cooldown="5" ProjectileObject="cats_tongueprojectile" Readout="true" />
+    <tag Name="Tier" Value="5" />
+	</object>
+	<object Name="cats_tongueprojectile" Inherits="TemporaryProjectile">
+    <part Name="Render" DisplayName="sticky tongue" />
+    <part Name="Projectile" BasePenetration="1" BaseDamage="1d8" ColorString="&amp;M" PassByVerb="slide" />
+	<part Name="StickyOnHit" Duration="6" SaveTarget="16" SaveVs="Entangle Stuck Restraint" MaxWeight="1000" />
+  </object>
+  <object Name="Bloated Pearlfrog" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_stickytongue" MinimumDamage="10" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Throwing Bones -->
+  <object Name="cats_bonedart" Inherits="BaseDagger">
+    <part Name="Render" DisplayName="{{Y|bone dart}}" RenderString="." Tile="Items/sw_shortblade_1.bmp" DetailColor="y" ColorString="&amp;y" Occluding="false" />
+	<part Name="MeleeWeapon" MaxStrengthBonus="1" BaseDamage="1" Skill="ShortBlades" Stat="Agility" />
+    <part Name="Physics" Weight="0" Takeable="true" Solid="false" />
+    <part Name="Description" Short="A small fragment of bone shaped well enough for cutting and throwing." />
+    <part Name="ThrownWeapon" Damage="1d2" Penetration="1" />
+    <part Name="Commerce" Value="2" />
+	<tag Name="Mods" Value="CommonMods,ThrownWeaponMods" />
+    <tag Name="Tier" Value="0" />
+  </object>
+  <object Name="Bone Worm" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_bonedart" MinimumDamage="1" Chance="50" SpawnAsDropColor="false"/>
+  </object>
+  <object Name="Snapjaw" Load="Merge">
+	<inventoryobject Blueprint="cats_bonedart" Number="1d3" Chance="10"/>
+  </object>
+  <object Name="cats_trollrib" Inherits="BaseDagger">
+    <part Name="Render" DisplayName="{{Y|troll rib}}" RenderString=")" Tile="Items/sw_banana.bmp" DetailColor="Y" ColorString="&amp;Y" Occluding="false" />
+	<part Name="MeleeWeapon" MaxStrengthBonus="3" BaseDamage="1d4" Skill="ShortBlades" Stat="Agility" />
+    <part Name="Physics" Weight="1" Takeable="true" Solid="false" />
+    <part Name="Description" Short="A sharp chunk of rib bone from a troll, suitable for stabbing applications." />
+    <part Name="ThrownWeapon" Damage="1d4" Penetration="4" />
+    <part Name="Commerce" Value="4" />
+	<tag Name="Mods" Value="CommonMods,ThrownWeaponMods" />
+    <tag Name="Tier" Value="2" />
+  </object>
+  <object Name="Troll" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_trollrib" MinimumDamage="1" Chance="4" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Thistlecrown -->
+  <object Name="cats_thistlecrown" Inherits="BaseHat">
+    <part Name="Armor" AV="0" DV="0" WornOn="Head" />
+    <part Name="Render" DisplayName="{{C|thistlecrown}}" RenderString="]" Tile="Items/sw_wreath.bmp" DetailColor="Y" ColorString="&amp;C" />
+    <part Name="Commerce" Value="10" />
+    <part Name="Description" Short="A prickly growth from a thirst thistle that has been carefully twisted into headwear. Its fronds slowly absorb water from the air." />
+    <part Name="Physics" Weight="1" Category="Clothes" />
+	<part Name="LiquidVolume" MaxVolume="2" StartVolume="0-1" InitialLiquid="water-1000" />
+    <part Name="LiquidProducer" Liquid="water" Rate="3000" WorksOnWearer="true" WorksOnSelf="false" />
+    <tag Name="Tier" Value="1" />
+    <tag Name="DynamicObjectsTable:Headwear" />
+	<tag Name="LivePlant" />
+	<intproperty Name="Inorganic" Value="0" />
+  </object>
+  <object Name="Thirst Thistle" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_thistlecrown" MinimumDamage="1" Chance="3" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Glowpad Flower Wreath -->
+  <object Name="cats_glowwreath" Inherits="BaseHat">
+    <part Name="Armor" AV="0" DV="0" WornOn="Head" />
+    <part Name="Render" DisplayName="{{m|glow}} wreath" RenderString="]" Tile="Items/sw_wreath.bmp" DetailColor="g" ColorString="&amp;m" />
+    <part Name="Commerce" Value="25" />
+    <part Name="Description" Short="A softly glowing wreath made from intertwined glowpad fibers." />
+    <part Name="Physics" Weight="1" Category="Clothes" />
+    <part Name="LightSource" Lit="true" Radius="4" />
+	<part Name="AddsRep" Faction="Flowers" Value="100" />
+    <tag Name="Tier" Value="1" />
+    <tag Name="DynamicObjectsTable:Headwear" />
+	<tag Name="LivePlant" />
+	<intproperty Name="Inorganic" Value="0" />
+  </object>
+  <object Name="Glowpad" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_glowwreath" MinimumDamage="1" Chance="1" SpawnAsDropColor="false"/>
+	<inventoryobject Blueprint="cats_wasp" Number="1d2" Chance="10"/>
+  </object>
+  <!-- Glowfish Scales -->
+  <object Name="cats_glowfishscales" Inherits="LightSource">
+    <part Name="Render" DisplayName="{{m|glowfish scales}}" RenderString="*" RenderLayer="5" Tile="Items/sw_jerky2.bmp" DetailColor="C" ColorString="&amp;m" />
+    <part Name="LightSource" Lit="true" Radius="3" />
+    <part Name="GlowsphereProperties" AllowedParts="Hand" />
+    <part Name="Commerce" Value="10" />
+    <part Name="Description" Short="Softly glowing scales from a glowfish." />
+  </object>
+  <object Name="Glowfish" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_glowfishscales" MinimumDamage="1" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Cyclopean Skull -->
+  <object Name="cats_cyclopshelm" Inherits="BaseHelmet">
+    <part Name="Armor" AV="2" Toughness="1" Ego="2" DV="0" WornOn="Head" />
+    <part Name="Render" DisplayName="elder cyclopean skull" RenderString="]" DetailColor="M" ColorString="&amp;m" />
+    <part Name="Commerce" Value="250" />
+    <part Name="Description" Short="An ornately painted skull of an elder cyclopean gibbon, one even more massive and powerful than those known today." />
+    <part Name="Physics" Weight="11" />
+	<part Name="AddsRep" Faction="Apes" Value="-400" />
+	<part Name="ModImprovedTemporalFugue" Tier="1" />
+	<tag Name="UsesSlots" Value="Face" />
+    <tag Name="Tier" Value="6" />
+	<tag Name="ExcludeFromDynamicEncounters" />
+    <intproperty Name="Inorganic" Value="0" />
+  </object>
+  <!--Sightless Way -->
+  <object Name="cats_vorpalsword" Inherits="BaseLongBlade">
+    <part Name="Render" DisplayName="{{glittering|umbral sword}}" RenderString="\" ColorString="&amp;K" DetailColor="M" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="9568" BaseDamage="1d10" Skill="LongBlades" Stat="Ego" />
+	<part Name="ElementalDamage" Damage="2d12+12" Attributes="Umbral" ChargeUse="5000" />
+    <part Name="Commerce" Value="1939" />
+    <part Name="Description" Short="Blackness emenates from the blade of the umbral sword, consuming light from the world around it. Seas of blood have poured over the weapon to float it down the path to its current master, who will no doubt be a temporary one." />
+    <part Name="Metal" />
+    <part Name="Physics" Weight="8" FlameTemperature="99999" VaporTemperature="9999" />
+	<part Name="Stainless" />
+	<part Name="GlimmerAlteration" Amount="66" ShowInShortDescription="false" ChargeUse="10" />
+	<part Name="LiquidVolume" MaxVolume="16" StartVolume="1-8" InitialLiquid="blood-1000" />
+	<part Name="LiquidFueledPowerPlant" Liquid="blood" ChargePerDram="20000" IsEMPSensitive="false" />
+	<part Name="BootSequence" BootTime="10" ChargeUse="4000" VerbOnBootInitialized="snick" VerbOnBootAborted="shudder" VerbOnBootDone="snack" />
+	<part Name="Blackout" Radius="1" />
+	<part Name="Unreplicable" />
+    <tag Name="Tier" Value="11" />
+    <tag Name="Hitsound" Value = "meleeTier8" />
+	<tag Name="ExcludeFromDynamicEncounters" />
+	<tag Name="NoSparkingQuest" />
+	<property Name="Role" Value="Rare" />
+  </object>
+  <object Name="cats_psibeacon" Inherits="BaseHelmet">
+    <part Name="Armor" AV="1" DV="0" Ego="1" WornOn="Head" />
+    <part Name="Render" DisplayName="psionic beacon" Tile="Items/sw_mental_aggregator.bmp" RenderString="]" ColorString="&amp;m" DetailColor="M" />
+    <part Name="Commerce" Value="800" />
+    <part Name="Description" Short="The angular crystal atop this headpiece calls out to the void, reaching into the boundless luminescence with a bright light that cannot be ignored." />
+    <part Name="Physics" Weight="10" />
+    <part Name="Metal" />
+	<part Name="GlimmerAlteration" Amount="666" ShowInShortDescription="true" ChargeUse="1000" />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" />
+	<part Name="BootSequence" BootTime="40" ChargeUse="1000" VerbOnBootInitialized="hum" VerbOnBootAborted="fail" VerbOnBootDone="connect" />
+    <tag Name="Tier" Value="8" />
+  </object>
+  <object Name="cats_seekermask" Inherits="BaseMask">
+    <part Name="Armor" AV="0" DV="0" Ego="2" ToHit="-4" WornOn="Face" />
+    <part Name="Render" DisplayName="seeker's mask" RenderString="]" DetailColor="k" ColorString="&amp;K" Tile="items/sw_mask.bmp" />
+    <part Name="Commerce" Value="5" />
+    <part Name="Description" Short="An intimidating mask which obscures the wearer's vision." />
+    <part Name="Physics" Weight="1" />
+	<part Name="AddsRep" Faction="Seekers" Value="200" />
+    <tag Name="Tier" Value="2" />
+  </object>
+  <object Name="BaseSightless" Load="Merge">
+	<inventoryobject Blueprint="cats_seekermask" Number="1" Chance="5"/>
+	<inventoryobject Blueprint="cats_psibeacon" Number="1" Chance="1"/>
+	<inventoryobject Blueprint="cats_psiamp" Number="1" Chance="1"/>
+  </object>
+  <object Name="Arch Dervish of the Sightless Way" Load="Merge">
+	<inventoryobject Blueprint="cats_psibeacon" Number="1" Chance="5"/>
+	<inventoryobject Blueprint="cats_vorpalsword" Number="1" Chance="1"/>
+	<inventoryobject Blueprint="cats_psiamp" Number="1d3" Chance="5"/>
+  </object>
+  <!-- Psionic Amplifier -->
+  <object Name="cats_psiamp" Inherits="BaseCudgel">
+    <part Name="Render" DisplayName="{{extradimensional|psionic focus}}" Tile="Items/sw_prism.bmp" RenderString="p" ColorString="&amp;M" DetailColor="y"/>
+    <part Name="MeleeWeapon" MaxStrengthBonus="5" BaseDamage="1d2" Skill="Cudgel" Stat="Ego" />
+	<part Name="LifeDrainOnHit" Damage="1d2" />
+    <part Name="Commerce" Value="120" />
+    <part Name="Description" Short="The elder sages imbued their power, giving strength to those less gifted. Behold: the danger of their wisdom." />
+	<part Name="AddsRep" Faction="highly entropic beings" Value="100" />
+	<part Name="GlimmerAlteration" Amount="10" ShowInShortDescription="true" ChargeUse="1" IsBootSensitive="true" WorksOnEquipper="true"/>
+	<part Name="EquipStatBoost" Boosts="Willpower:1" ChargeUse="4" IsBootSensitive="true" IsEMPSensitive="true" IsRealityDistortionBased="true" WorksOnEquipper="true" WorksOnSelf="false" RequiresBodyPartCategory="Animal" />
+	<part Name="IntPropertyChanger" AffectedProperty="MentalMutationForceShift" AfterUpdateEvent="SyncMutationLevels" Amount="1" ChargeUse="5" MustBeUnderstood="false" NameForStatus="Psiamp"  IsBootSensitive="true" IsEMPSensitive="true" IsRealityDistortionBased="true" WorksOnEquipper="true" WorksOnSelf="false" RequiresBodyPartCategory="Animal"/>
+	<part Name="BootSequence" BootTime="10" ChargeUse="10" VerbOnBootInitialized="shake" VerbOnBootAborted="clack" VerbOnBootDone="hum" />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" />
+	<part Name="LightSource" Lit="true" Radius="2" />
+	<part Name="GlowsphereProperties" AllowedParts="Hand" />
+	<part Name="AddsTelepathyOnEquip" IsBootSensitive="true" />
+	<part Name="Examiner" Complexity="5" Difficulty="1" />
+	<part Name="RulesDescription" Text="When powered and equipped, increases the level of all mental mutations by 1." />
+    <tag Name="Tier" Value="5" />
+    <part Name="Physics" Weight="2" />
+    <tag Name="Hitsound" Value = "meleeTier0" />
+  </object>
+  <!-- Bones and Cannibals-->
+  <object Name="cats_femur" Inherits="BaseCudgel">
+    <part Name="Render" DisplayName="femur" RenderString="\" Tile="Items/sw_cudgel_10.bmp" ColorString="&amp;y" DetailColor="y"/>
+    <part Name="MeleeWeapon" MaxStrengthBonus="2" BaseDamage="1d2" Skill="Cudgel" Stat="Strength" />
+    <part Name="Commerce" Value="2" />
+    <part Name="Description" Short="The leg bone of a humanoid creature." />
+	<part Name="AddsRep" Faction="Dogs" Value="100" />
+    <tag Name="Tier" Value="0" />
+    <part Name="Physics" Weight="5" />
+    <tag Name="Hitsound" Value = "meleeTier0" />
+	<part Name="PreservableItem" Result="Compacted Bone Meal" Number="3" />
+  </object>
+  <object Name="cats_skullhelmet" Inherits="BaseHelmet">
+    <part Name="Armor" AV="1" Willpower="1" Ego="1" DV="0" WornOn="Head" />
+    <part Name="Render" DisplayName="large skull" RenderString="]" ColorString="&amp;Y" />
+    <part Name="Commerce" Value="25" />
+    <part Name="Description" Short="The wretched skull of some forgotten race of giants." />
+    <part Name="Physics" Weight="7" />
+	<part Name="AddsRep" Faction="Cannibals" Value="150" />
+	<tag Name="UsesSlots" Value="Face" />
+    <tag Name="Tier" Value="2" />
+    <intproperty Name="Inorganic" Value="0" />
+  </object>
+  <object Name="BaseCannibal" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_skullhelmet" MinimumDamage="5" Chance="1" SpawnAsDropColor="false"/>
+	<inventoryobject Blueprint="cats_femur" Number="0-1" />
+	<inventoryobject Blueprint="cats_skullhelmet" Number="1" Chance="10"/>
+	<inventoryobject Blueprint="cats_ragerobe" Number="0-1" Chance="1"/>
+  </object>
+   <!-- MechaStinger -->
+  <object Name="cats_mechastinger" Inherits="BaseLongBlade">
+    <part Name="Physics" Weight="10" UsesTwoSlots="false" />
+    <part Name="Render" DisplayName="{{lacquered|mechastinger}}" ColorString="&amp;C" DetailColor="g" RenderString="]" Tile="Items/sw_stinger.bmp" />
+    <part Name="Commerce" Value="95" />
+	<part Name="LiquidFueledPowerPlant" Liquid="goo" ChargePerDram="6" ConsiderLive="False" IsEMPSensitive="True" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="-4" BaseDamage="1d6" Skill="LongBlades" Slot="Back" />
+	<part Name="PoisonMelee" Chance="100" Strength="20" DamageIncrement="2d2" Duration="5-20" />
+	<part Name="BootSequence" BootTime="5" ChargeUse="1" VerbOnBootInitialized="unfold" VerbOnBootAborted="retract" VerbOnBootDone="buzz" />
+	<part Name="VibroWeapon" ChargeUse="2" />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-4" InitialLiquid="goo-1000" />
+    <part Name="Description" Short="A mechanized arachnid-like tail folded into a small backpack. A large blade is fixed at the end, connected to a small tank for holding poison." />
+    <part Name="AddsRep" Faction="Insects,Robots" Value="50" />
+	<part Name="RulesDescription" Text="When charged, this weapon's penetration value is equal to the defender's armor value." />
+	<part Name="Metal" />
+	<part Name="Examiner" Alternate="backpack" Complexity="5" />
+	<part Name="TinkerItem" Bits="0115" CanDisassemble="true" CanBuild="true" />
+    <tag Name="Tier" Value="5" />
+	<tag Name="Mods" Value="BladeMods,WeaponMods,CommonMods" />
+    <intproperty Name="Inorganic" Value="1" />
+	</object>
+	<object Name="Scorpiock" Load="Merge">
+	<inventoryobject Blueprint="cats_mechastinger" Number="1" Chance="1"/>
+  </object>
+  <!-- Glitter Cape -->
+  <object Name="cats_glittercape" Inherits="Leather Cloak">
+    <part Name="Armor" AV="0" DV="1" Ego="1" WornOn="Back" />
+    <part Name="Render" DisplayName="{{lovesickness|fabulous}} cape" RenderString="]" Tile="items/sw_cloak.bmp" ColorString="&amp;M" DetailColor="m" />
+    <part Name="Commerce" Value="100" />
+    <part Name="Description" Short="Dazzling light shines off this gorgeous, glittery cape." />
+    <part Name="Physics" Weight="2" />
+	<part Name="RefractLight" Chance="50" />
+    <tag Name="Tier" Value="4" />
+    <intproperty Name="Inorganic" Value="1" />
+  </object>
+  <object Name="Dromad" Load="Merge">
+	<inventoryobject Blueprint="cats_glittercape" Number="1" Chance="1"/>
+  </object>
+  <!-- Solar Backpack -->
+  <object Name="cats_solarpack" Inherits="Armor">
+    <part Name="Armor" AV="0" DV="-1" WornOn="Back" />
+    <part Name="Render" DisplayName="{{W|sunpack}}" RenderString="]" Tile="items/sw_beehive.bmp" TileColor="&amp;Y" DetailColor="c" />
+    <part Name="Commerce" Value="500" />
+    <part Name="Physics" Weight="15" />
+    <part Name="Description" Short="This dense, reflective box contains a slot for recharging energy cells using solar rays." />
+	<part Name="SolarArray" ChargeRate="25" NameForStatus="SolarPower" WorksOnEquipper="true" WorksOnSelf="false" WorksOnCarrier="false" WorksOnWearer="true"/>
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" />
+	<part Name="SlottedCellCharger" ChargeRate="25"/>
+	<part Name="TinkerItem" Bits="012445" CanDisassemble="true" CanBuild="true" />
+    <part Name="IntegralRecharger" />
+    <part Name="Metal" />
+	<part Name="Examiner" Alternate="backpack" Complexity="5" />
+    <tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+	<tag Name="Tier" Value="5" />
+  </object>
+  <object Name="Barathrumite" Load="Merge">
+	<inventoryobject Blueprint="cats_solarpack" Number="1" Chance="1"/>
+	<inventoryobject Blueprint="cats_brainhat" Number="1" Chance="1"/>
+	<inventoryobject Blueprint="cats_waydroidgrenade" Number="1d2" Chance="10"/>
+  </object>
+  <!-- Glowcrow Egg -->
+  <object Name="cats_crowegg" Inherits="Grenade">
+    <part Name="Render" DisplayName="{{m|glowcrow}} egg" RenderString="o" Tile="Assets_Content_Textures_Items_sw_orb.bmp" ColorString="&amp;m" DetailColor="Y"  />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="10" />
+    <part Name="DeploymentGrenade" Blueprint="Glowcrow" Count="1" Radius="2" RealRadius="true" LoyalToThrower="true" ActivationVerb="break" BlockedBySolid="true" BlockedByNonEmpty="true" DustPuff="true" DustPuffEach="true" />
+    <part Name="Description" Short="The softly glowing egg of a glowcrow." />
+	<part Name="Examiner" Complexity="1" Difficulty="0" />
+	<part Name="LightSource" Lit="true" Radius="2" />
+	<part Name="GlowsphereProperties" AllowedParts="Hand" />
+	<part Name="PreparedCookingIngredient" type="HP" charges="1" />
+	<part Name="TinkerItem" Bits="0" CanDisassemble="false" CanBuild="false" />
+	<part Name="NoRust" />
+    <tag Name="Tier" Value="0" />
+	<tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+	<tag Name="Mods" Value="None" />
+  </object>
+  <object Name="Glowcrow" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_crowegg" MinimumDamage="1" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Spider Egg -->
+  <object Name="cats_spideregg" Inherits="Grenade">
+    <part Name="Render" DisplayName="{{Y|spider egg clutch}}" RenderString="004" RenderLayer="5" Tile="Assets_Content_Textures_Items_sw_orb.bmp" ColorString="&amp;Y" DetailColor="y" />
+    <part Name="Physics" Weight="5" />
+    <part Name="Commerce" Value="1" />
+    <part Name="Description" Short="A soft, silky egg sac from a cave spider. What could be inside?" />
+	<part Name="DeploymentGrenade" Blueprint="cats_spiderhatchling" Count="1d4+1" Radius="2" RealRadius="true" LoyalToThrower="false" ActivationVerb="break" BlockedBySolid="true" BlockedByNonEmpty="true" DustPuff="true" DustPuffEach="true" />
+	<part Name="Examiner" Complexity="0" Difficulty="0" />
+	<part Name="PreparedCookingIngredient" type="HP" charges="1" />
+	<part Name="TinkerItem" Bits="0" CanDisassemble="false" CanBuild="false" />
+	<part Name="NoRust" />
+    <tag Name="Tier" Value="0" />
+	<tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+	<tag Name="Mods" Value="None" />
+	<tag Name="NoAutoget" Value="1" />
+  </object>
+  <object Name="Cave Spider" Load="Merge">
+	<inventoryobject Blueprint="cats_spideregg" Number="1d2" Chance="51"/>
+  </object>
+  <object Name="cats_spiderhatchling" Inherits="BaseSpider">
+    <part Name="Render" DisplayName="cave spider hatchling" Tile="creatures/sw_spider.bmp" ColorString="&amp;Y" DetailColor="g" RenderString="x" />
+    <part Name="Corpse" CorpseChance="25" CorpseBlueprint="Cave Spider Corpse" />
+    <part Name="Brain" Hibernating="false" Hostile="false" Factions="Arachnids-100" />
+    <stat Name="AV" Value="1" />
+    <stat Name="DV" Value="3" />
+    <stat Name="Hitpoints" Value="6" />
+    <stat Name="Level" Value="1" />
+    <inventoryobject Blueprint="CaveSpider_Bite" Number="1" />
+    <part Name="Description" Short="Spindle-limbed, pale, and skittish, it skitters around anxiously." />
+    <skill Name="ShortBlades" />
+	<mutation Name="SpiderWebs" Level="0" />
+    <property Name="Role" Value="Minion" />
+  </object>
+  <!-- Venom Sac -->
+  <object Name="cats_venomgland" Inherits="PoisonGasGrenade1">
+    <part Name="Render" DisplayName="{{G|venom sac}}" RenderString="004" RenderLayer="5" Tile="Items/sw_breather_gland.bmp" ColorString="&amp;g" DetailColor="G" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="10" />
+	<part Name="Examiner" Complexity="0" Difficulty="0" />
+    <part Name="Description" Short="A putrid organ from a poison producing creature. Its hazardous contents slosh around within, ready to burst." />
+	<part Name="GasGrenade" Density="40" GasObject="PoisonGas" />
+	<part Name="TinkerItem" Bits="0" CanDisassemble="false" CanBuild="false" />
+	<part Name="NoRust" />
+    <tag Name="Tier" Value="0" />
+  </object>
+  <object Name="Brown Sludge" Load="Merge">
+	<inventoryobject Blueprint="cats_venomgland" Number="1" Chance="1"/>
+  </object>
+  <object Name="Girshworm" Load="Merge">
+	<inventoryobject Blueprint="cats_venomgland" Number="1" Chance="5"/>
+  </object>
+  <object Name="Scorpiock" Load="Merge">
+	<inventoryobject Blueprint="cats_venomgland" Number="1" Chance="5"/>
+  </object>
+  <object Name="GolgothaSlog" Load="Merge">
+	<part Name="FabricateFromSelf" ChargeUse="0" FabricateBlueprint="cats_venomgland" FabricateVerb="vomit" BatchSize="1" HitpointsPer="1" AIUseForThrowing="true" AIHitpointsThreshold="10" HitpointsThreshold="5" EnergyCost="500" Cooldown="1d6+1" />
+  </object>
+  <!-- Spray Paint -->
+  <object Name="cats_spraypaint" Inherits="Tool">
+    <part Name="Render" DisplayName="{{sunset|chromatic illustrator}}" RenderString="004" RenderLayer="5" Tile="items/sw_spray.bmp" ColorString="&amp;W" DetailColor="M" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="30" />
+    <part Name="Description" Short="Modeled after the paint cans of old, this benign invention of the eaters applies a preset illustration to a surface." />
+	<part Name="DeployableInfrastructure" ModPart="ModPainted" DeployNoun="illustrator" DeployVerb="activate" Cells="1" />
+	<part Name="Examiner" Complexity="3" />
+	<tag Name="DynamicObjectsTable:TradeGoods" />
+    <tag Name="Tier" Value="0" />
+  </object>
+  <object Name="Scrapbot" Load="Merge">
+	<inventoryobject Blueprint="cats_spraypaint" Number="1" Chance="1"/>
+  </object>
+  <!-- Barbarian Toga -->
+  <object Name="cats_ragerobe" Inherits="BaseArmor">
+    <part Name="Armor" AV="1" DV="2" Intelligence="-2" WornOn="Body" />
+    <part Name="Render" DisplayName="rage toga" RenderString="T" ColorString="&amp;r"/>
+    <part Name="Commerce" Value="60" />
+    <part Name="Description" Short="An ancient, blood stained robe passed down through generations of savage warriors, empowering them through bloodlust." />
+    <part Name="Physics" Weight="4" />
+	<part Name="LiquidVolume" MaxVolume="1" StartVolume="1" InitialLiquid="blood-1000" AutoCollectLiquidType="blood" />
+	<part Name="LiquidFueledPowerPlant" Liquid="blood" ChargePerDram="102" ConsiderLive="False" IsEMPSensitive="False" />
+	<part Name="EquipStatBoost" Boosts="Strength:4;Toughness:2" ChargeUse="1" IsBootSensitive="true" IsEMPSensitive="false" WorksOnWearer="true" WorksOnSelf="false" RequiresBodyPartCategory="Animal" />
+	<part Name="BootSequence" BootTime="2" ChargeUse="1" VerbOnBootInitialized="shake" VerbOnBootAborted="calm" VerbOnBootDone="roar" />
+	<part Name="AddsRep" Faction="Cannibals" Value="150" />
+	<part Name="StunOnHit" ChargeUse="1" Chance="1" Duration="1d4" />
+	<part Name="RulesDescription" Text="Requires a constant source of liquid blood, increasing fighting ability and providing a slight stun chance on melee attacks." />
+	<property Name="Role" Value="Rare" />
+    <tag Name="Tier" Value="4" />
+	<tag Name="ExcludeFromDynamicEncounters" />
+	
+  </object>
+  <!-- ChargeLamp -->
+  <object Name="cats_flashlight" Inherits="LightSource">
+    <part Name="Render" DisplayName="{{Y|chargelamp}}" RenderString="*" RenderLayer="5" Tile="items/sw_hitech_lightsource1.bmp" ColorString="&amp;K" DetailColor="Y" />
+    <part Name="LightSource" OnlyIfCharged="true" Radius="10" />
+	<part Name="ChargeSink" ChargeUse="10" NameForStatus="LightPower" WorksOnEquipper="true" WorksOnSelf="false" />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" ChanceSlotted="50" />
+    <part Name="GlowsphereProperties" AllowedParts="Hand" />
+    <part Name="Commerce" Value="30" />
+    <part Name="Description" Short="A portable light powered by an energy cell." />
+	<part Name="Examiner" Alternate="small box" Complexity="1" Difficulty="0" />
+    <part Name="TinkerItem" Bits="011" CanDisassemble="true" CanBuild="true" />
+	<tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+    <tag Name="Tier" Value="1" />
+  </object>
+  <object Name="Templar" Load="Merge">
+	<inventoryobject Blueprint="cats_flashlight" Number="1" Chance="10"/>
+	<inventoryobject Blueprint="cats_beautygram" Number="1" Chance="1"/>
+  </object>
+  <!-- Medical Implant -->
+  <object Name="cats_medicalimplant" Inherits="BaseBracelet">
+    <part Name="Armor" AV="0" DV="0" WornOn="Arm" />
+    <part Name="Render" DisplayName="{{c|biomanager}}" RenderString="x" Tile="Items/sw_psychal_gland.bmp" ColorString="&amp;c" DetailColor="Y" />
+    <part Name="Commerce" Value="200" />
+    <part Name="Description" Short="Tiny wires dangle from this medical marvel, waiting to be inserted into the skin where they watch upon the wellbeing of the host." />
+    <part Name="Physics" Weight="1" Category="Artifacts" />
+    <part Name="Examiner" Alternate="strange tubes" Complexity="2" Difficulty="0" />
+    <part Name="TinkerItem" Bits="0144" CanDisassemble="true" CanBuild="true" />
+	<part Name="LiquidVolume" MaxVolume="8" StartVolume="1-4" InitialLiquid="convalessence-1000" />
+	<part Name="LiquidFueledPowerPlant" Liquid="convalessence" ChargePerDram="1000" ConsiderLive="False" IsEMPSensitive="true" />
+	<part Name="LeakWhenBroken" />
+	<part Name="DestroyOnUnequip" Message="The biomanager falls to pieces."/>
+	<part Name="RulesDescription" Text="Improves health while fueled. Once equipped, removing the device will destroy it." />
+	<part Name="EquipStatBoost" Boosts="Toughness:1;Willpower:1" ChargeUse="1" IsBootSensitive="false" IsEMPSensitive="true" RequiresBodyPartCategory="Animal" />
+    <tag Name="Mods" Value="CommonMods,LiquidMods" />
+    <tag Name="Tier" Value="4" />
+  </object>
+  <object Name="Boosterbot" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_medicalimplant" MinimumDamage="3" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  <!-- Slime Gland -->
+  <object Name="cats_slimegland" Inherits="Tool">
+    <part Name="Render" DisplayName="{{g|slime gland}}" RenderString="004" RenderLayer="5" Tile="Items/sw_transparent.bmp" ColorString="&amp;g" DetailColor="G" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="1" />
+    <part Name="Description" Short="An icky organ from a slime producing creature, still full of awful goo." />
+	<part Name="DeployableInfrastructure" DeployNoun="gland" DeployVerb="squeeze" ObjectBlueprint="SmallSlimePuddle" Cells="4" />
+    <tag Name="Tier" Value="0" />
+	<tag Name="NoAutoget" Value="1" />
+  </object>
+  <object Name="GiantAmoeba" Load="Merge">
+	<inventoryobject Blueprint="cats_slimegland" Number="1" Chance="5"/>
+  </object>
+  <!-- Arc Band -->
+  <object Name="cats_shockbracelet" Inherits="BaseBracelet">
+    <part Name="Render" DisplayName="{{W|arc band}}" ColorString="&amp;W" DetailColor="c" RenderString="\" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="0" BaseDamage="1" Skill="Cudgel" Stat="Agility" Slot="Arm" />
+	<part Name="ElementalDamage" Damage="2d3+3" Attributes="Electric" ChargeUse="1000" />
+	<part Name="EnergyCellSocket" SlotType="EnergyCell" />
+    <part Name="StunOnHit" ChargeUse="1000" Chance="5" Duration="1d4" />
+    <part Name="Commerce" Value="75" />
+    <part Name="Description" Short="A metal bracer covered in copper coils that occasionaly releases dangerous bursts of electricity." />
+	<part Name="RulesDescription" Text="When powered and equipped, occasionaly deals electric damage to melee targets." />
+    <part Name="Metal" />
+	<part Name="Physics" Weight="5" />
+	<part Name="TinkerItem" Bits="0013" CanDisassemble="true" CanBuild="true" />
+	<part Name="Examiner" Alternate="strange tubes" Complexity="2" Difficulty="0" />
+	<tag Name="Mods" Value="CommonMods,ElectronicsMods" />
+    <tag Name="Tier" Value="3" />
+    <tag Name="Hitsound" Value="laser_medium_1" /> />
+  </object>
+  <object Name="BaseArconaut" Load="Merge">
+	<inventoryobject Blueprint="cats_shockbracelet" Number="1" Chance="5"/>
+	<inventoryobject Blueprint="cats_flashlight" Number="1" Chance="5"/>
+	<inventoryobject Blueprint="cats_spraypaint" Number="1" Chance="5"/>
+	<inventoryobject Blueprint="cats_wristflame" Number="1" Chance="2"/>
+  </object>
+  <object Name="Trash Monk" Load="Merge">
+	<inventoryobject Blueprint="cats_shockbracelet" Number="1" Chance="5"/>
+	<inventoryobject Blueprint="cats_spraypaint" Number="1" Chance="5"/>
+  </object>
+  <!-- Wasp -->
+  <object Name="cats_wasp" Inherits="BaseDagger">
+    <part Name="Physics" Weight="0" UsesTwoSlots="false" />
+    <part Name="Render" DisplayName="{{bee|mercenary wasp}}" ColorString="&amp;W" DetailColor="K" RenderString="]" Tile="Items/sw_symbiotic_firefly.bmp" />
+    <part Name="Commerce" Value="95" />
+    <part Name="LiquidVolume" MaxVolume="8" StartVolume="1-8" InitialLiquid="honey-1000" />
+    <part Name="LeakWhenBroken" />
+	<part Name="LiquidFueledPowerPlant" Liquid="honey" ChargePerDram="5" ConsiderLive="False" IsEMPSensitive="False" />
+    <part Name="MeleeWeapon" MaxStrengthBonus="-4" BaseDamage="1" Skill="ShortBlades" Stat="Agility" Slot="Floating Nearby" />
+	<part Name="VibroWeapon" ChargeUse="1" />
+	<part Name="PoisonMelee" Chance="100" Strength="15" DamageIncrement="1d2" Duration="3-8" />
+    <part Name="Description" Short="Hungry for sweet, sticky syrup which it cannot produce itself, this massive wasp fights only for its host." />
+    <part Name="AddsRep" Faction="Insects" Value="50" />
+	<part Name="RulesDescription" Text="When fed honey, will poison enemies more often in melee. Will leave if unequipped." />
+	<part Name="DestroyOnUnequip" Message="The mercenary wasp leaves."/>
+    <tag Name="Tier" Value="3" />
+	<tag Name="Mods" Value="BladeMods,WeaponMods,CommonMods" />
+	</object>
+  <object Name="SolidPlant" Load="Merge">
+	<part Name="DropOnDamage" Blueprint="cats_wasp" MinimumDamage="3" Chance="1" SpawnAsDropColor="false"/>
+  </object>
+  
+  <!-- Anticarbon Cannon   --> 
+  <object Name="cats_carbonshot" Inherits="TemporaryProjectile">
+    <part Name="Render" DisplayName="{{implanted|anticarbon}} stream" ColorString="&amp;R" />
+    <part Name="Projectile" BasePenetration="0" BaseDamage="2d12" Attributes="Vorpal" PenetrateCreatures="true" ColorString="&amp;R" PassByVerb="buzz" />
+	<part Name="Cats_DismemberProjectile" Chance="100" CanDecapitate="false" Strength="20" Amount ="1d3" />
+	<part Name="OmniphaseProjectile" />
+  </object>
+<object Name="cats_decarbonizer" Inherits="BaseHeavyWeapon">
+    <part Name="Render" DisplayName="{{implanted|anticarbon}} emitter" DetailColor="c" ColorString="&amp;o" Tile="items/sw_techrifle4.bmp" />
+    <part Name="Physics" Weight="220" UsesTwoSlots="true" />
+    <part Name="MissileWeapon" Skill="HeavyWeapons" AmmoChar="&amp;R-" AnimationDelay="20" ShotsPerAction="1" AmmoPerAction="1" ShotsPerAnimation="1" WeaponAccuracy="3" />
+    <part Name="Commerce" Value="2000" />
+    <part Name="EnergyAmmoLoader" ChargeUse="9950" ProjectileObject="cats_carbonshot" />
+    <part Name="EnergyCellSocket" SlotType="EnergyCell" />
+    <part Name="Description" Short="Particles spin within the massive cannon, where they will soon challenge the weaving of spacetime." />
+    <part Name="Examiner" Alternate="strange tubes" Complexity="7" Difficulty="1" />
+    <part Name="TinkerItem" Bits="003578" CanDisassemble="true" CanBuild="false" />
+    <part Name="Metal" />
+	<part Name="CooldownAmmoLoader" Cooldown="1d20+10" Readout="true" />
+	<part Name="ItemElements" Elements="might:2" />
+	<part Name="BootSequence" BootTime="10" ChargeUse="1" VerbOnBootInitialized="beep" VerbOnBootAborted="clack" VerbOnBootDone="buzz" />
+    <tag Name="MissileFireSound" Value="laser_heavy_3" />
+    <tag Name="Mods" Value="MissileWeaponMods,CommonMods,HeavyWeaponMods,ElectronicsMods" />
+    <tag Name="Tier" Value="10" />
+	<tag Name="ExcludeFromDynamicEncounters" Value="noinherit"/>
+	<property Name="Role" Value="Rare" />
+  </object>
+  <object Name="Decarbonizer" Load="Merge">
+	<inventoryobject Blueprint="cats_decarbonizer" Number="1" Chance="5"/>
+	<tag Name="NoEquip" Value="cats_decarbonizer" />
+	<property Name="WontSell" Value="cats_decarbonizer" />
+  </object>
+  <!-- Tick Grenades -->
+  <object Name="cats_tickgrenade1" Inherits="Grenade">
+    <part Name="Render" DisplayName="{{W|high explosive}} tick mk I" Tile="Items/sw_grenade_mki.bmp" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="30" />
+    <part Name="Description" Short="A pineapple shaped ovoid, sheathed in a bundle of folded-up steel legs." />
+	<part Name="DeploymentGrenade" Blueprint="cats_hetick1" Count="1" Radius="1" RealRadius="true" LoyalToThrower="true" ActivationVerb="unfold" BlockedBySolid="true" BlockedByNonEmpty="true" DustPuff="true" DustPuffEach="true" />
+	<part Name="TinkerItem" Bits="001"  />
+	<tag Name="Mark" Value="1" />
+    <tag Name="Tier" Value="1" />
+	<tag Name="ExcludeFromTurretStock" />
+	</object>
+	<object Name="cats_hetick1" Inherits="ClockworkBeetle">
+    <part Name="Render" DisplayName="{{W|high explosive}} tick mk I" Tile="Creatures/sw_sparktick.bmp" RenderIfDark="true" RenderString="i" ColorString="&amp;c" DetailColor="R" />
+    <part Name="Brain" Hostile="true" Wanders="false" Mobile="true" />
+    <stat Name="Hitpoints" Value="5" />
+    <part Name="Description" Short="Racing across the ground at alarming speed is the unmistakable form of a hand grenade." />
+    <part Name="FeralLahPod" damage="4d6" />
+    <stat Name="Level" Value="1" />
+    <property Name="Role" Value="Minion" />
+	<tag Name="ExcludeFromDynamicEncounters" />
+	<tag Name="NoXP" />
+  </object>
+  <object Name="cats_tickgrenade2" Inherits="Grenade">
+    <part Name="Render" DisplayName="{{W|high explosive}} tick mk II" Tile="Items/sw_grenade_mkii.bmp" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="30" />
+    <part Name="Description" Short="A pineapple shaped ovoid, sheathed in a swath of folded-up steel legs." />
+	<part Name="DeploymentGrenade" Blueprint="cats_hetick1" Count="2" Radius="1" RealRadius="true" LoyalToThrower="true" ActivationVerb="unfold" BlockedBySolid="true" BlockedByNonEmpty="true" DustPuff="true" DustPuffEach="true" />
+	<part Name="TinkerItem" Bits="0011"  />
+    <tag Name="Mark" Value="2" />
+    <tag Name="Tier" Value="3" />
+	</object>
+	<object Name="cats_tickgrenade3" Inherits="Grenade">
+    <part Name="Render" DisplayName="{{W|high explosive}} tick mk III" Tile="Items/sw_grenade_mkiii.bmp" />
+    <part Name="Physics" Weight="1" />
+    <part Name="Commerce" Value="45" />
+    <part Name="Description" Short="A pineapple shaped ovoid, sheathed in a huge smattering of folded-up steel legs." />
+	<part Name="DeploymentGrenade" Blueprint="cats_hetick1" Count="3" Radius="1" RealRadius="true" LoyalToThrower="true" ActivationVerb="unfold" BlockedBySolid="true" BlockedByNonEmpty="true" DustPuff="true" DustPuffEach="true" />
+	<part Name="TinkerItem" Bits="0012"  />
+    <tag Name="Mark" Value="3" />
+    <tag Name="Tier" Value="5" />
+    <tag Name="ExcludeFromTurretStock" />
+	</object>
+	<!-- Magma Cannon -->
+	<object Name="cats_magmacannon" Inherits="BaseHeavyWeapon">
+    <part Name="Render" Tile="items/sw_techrifle_2.bmp" DisplayName="{{fiery|magma cannon}}" ColorString="&amp;r" DetailColor="O" RenderString=")" />
+    <part Name="Physics" UsesTwoSlots="true" />
+    <part Name="MissileWeapon" Skill="Rifle" AmmoChar="f" ShotsPerAction="1" AmmoPerAction="1" ShotsPerAnimation="1" WeaponAccuracy="4" />
+    <part Name="Commerce" Value="1000" />
+    <part Name="LiquidAmmoLoader" Liquid="lava" ProjectileObject="cats_projectilemagma" />
+    <part Name="LiquidVolume" MaxVolume="16" Volume="16" StartVolume="1d6-1" InitialLiquid="lava-1000" />
+    <part Name="LeakWhenBroken" />
+    <part Name="Description" Short="A built in thermoelectric generator powers the coils wrapped around this rifle, launching ionized molten rounds at a massive velocity." />
+    <part Name="Examiner" Complexity="4" />
+    <part Name="TinkerItem" Bits="00036" />
+    <part Name="Metal" />
+    <tag Name="TurretName" Value="magma turret" />
+    <tag Name="Tier" Value="8" />
+    <tag Name="DynamicObjectsTable:Guns" />
+    <tag Name="TinkerCategory" Value="rifles" />
+    <tag Name="ReloadSound" Value="SplashStep1" />
+    <tag Name="MissileFireSound" Value="flamethrower" />
+  </object>
+  <object Name="cats_projectilemagma" Inherits="TemporaryProjectile">
+    <part Name="Render" DisplayName="{{R|molten slug}}" ColorString="&amp;R" />
+    <part Name="Projectile" BasePenetration="0" BaseDamage="10d4" Attributes="Heat Fire" ColorString="&amp;R" PassByVerb="whoosh" />
+    <part Name="TemperatureOnHit" Amount="800+8d20" Max="false" OnWielderHit="true" />
+    <part Name="TemperatureOnEntering" Amount="400+4d20" Max="false" OnWielderHit="true" />
+	<part Name="Cats_liquidCreateOnHit" Chance="100" Blueprint="cats_lavagun_effect" Amount="1" />
+  </object>
+    <object Name="cats_lavagun_effect" Inherits="Water">
+    <part Name="LiquidVolume" MaxVolume="-1" Volume="1" StartVolume="1" InitialLiquid="lava-900,salt-100" /> <!-- Due to a limitation of the script, magma pools will not spawn from shots that kill the target.-->
+  </object>
+</objects> 
